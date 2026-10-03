@@ -14,7 +14,19 @@ npm run build
 npm run preview
 ```
 
-Publish the generated `dist/` directory to a static host. No server adapter or database is required. The Astro configuration assumes the root of `dreamcleanmacon.com`; update `site` and `base` if deploying under a different domain or a GitHub Pages project subdirectory.
+Publish the generated `dist/` directory to a static host. No server adapter or database is required. Local builds default to the root of `dreamcleanmacon.com`. Set `ASTRO_SITE` and `ASTRO_BASE` to build for another domain or subdirectory.
+
+## GitHub Pages
+
+In the repository's **Settings → Pages → Build and deployment**, choose **GitHub Actions** as the source. The workflow in `.github/workflows/deploy.yml` installs the locked dependencies, checks Astro, builds the site (including image provenance), and deploys `dist/` on every push to `main`. It can also be run manually from **Actions → Deploy to GitHub Pages → Run workflow**. No deployment secret is required.
+
+The workflow obtains the origin and base path from GitHub Pages, so assets and the canonical URL work at `https://kerryhatcher.github.io/dreamcleanmacon.com/` or a custom domain configured in Pages settings. To use `dreamcleanmacon.com`, configure it in those settings and set the domain's DNS records as described in [GitHub's custom domain guide](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site). DNS changes are separate from this workflow.
+
+To reproduce the project URL build locally:
+
+```sh
+ASTRO_SITE=https://kerryhatcher.github.io ASTRO_BASE=/dreamcleanmacon.com npm run build
+```
 
 ## Quote form
 
