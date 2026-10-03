@@ -1,0 +1,163 @@
+{
+  "regions": [
+    {
+      "id": "logo",
+      "kind": "image",
+      "grid": "A0:B0",
+      "note": "Existing Dream Clean thought bubble logo",
+      "plate": "public/images/logo.png",
+      "box": {
+        "x": 0.061848958333333336,
+        "y": 0.0048828125,
+        "w": 0.10677083333333333,
+        "h": 0.09375
+      },
+      "snap": false
+    },
+    {
+      "id": "nav",
+      "kind": "chrome",
+      "grid": "C0:F0",
+      "note": "Housekeeping Property cleaning About navigation links",
+      "box": {
+        "x": 0.244140625,
+        "y": 0.0390625,
+        "w": 0.3177083333333333,
+        "h": 0.0341796875
+      },
+      "snap": false
+    },
+    {
+      "id": "phone",
+      "kind": "text",
+      "grid": "I0:J0",
+      "note": "Blue phone number (678) 232-8614",
+      "box": {
+        "x": 0.8203125,
+        "y": 0.0380859375,
+        "w": 0.115234375,
+        "h": 0.03125
+      },
+      "snap": false
+    },
+    {
+      "id": "location",
+      "kind": "text",
+      "grid": "A1:D1",
+      "note": "Macon and Middle Georgia location label",
+      "box": {
+        "x": 0.045572916666666664,
+        "y": 0.14453125,
+        "w": 0.24934895833333334,
+        "h": 0.0234375
+      },
+      "snap": false
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "grid": "A2:F3",
+      "note": "A clean home. A calmer day. large serif two-line headline",
+      "box": {
+        "x": 0.045572916666666664,
+        "y": 0.1806640625,
+        "w": 0.4622395833333333,
+        "h": 0.2099609375
+      },
+      "snap": false
+    },
+    {
+      "id": "intro",
+      "kind": "text",
+      "grid": "H1:J2",
+      "note": "Housekeeping and move-in move-out cleaning paragraph",
+      "box": {
+        "x": 0.6998697916666666,
+        "y": 0.189453125,
+        "w": 0.25390625,
+        "h": 0.09375
+      },
+      "snap": false
+    },
+    {
+      "id": "quote",
+      "kind": "control",
+      "grid": "H3:J3",
+      "note": "Forest rectangular Request a quote button",
+      "box": {
+        "x": 0.7018229166666666,
+        "y": 0.30859375,
+        "w": 0.2526041666666667,
+        "h": 0.0654296875
+      },
+      "snap": false
+    },
+    {
+      "id": "interior",
+      "kind": "image",
+      "grid": "A4:J8",
+      "note": "Panoramic sunlit living room sofa kitchen and wooden floor photograph",
+      "bleed": true,
+      "plate": "public/images/tranquil-home.png",
+      "box": {
+        "x": 0.0,
+        "y": 0.4091796875,
+        "w": 1.0,
+        "h": 0.470703125
+      },
+      "snap": false
+    },
+    {
+      "id": "caption",
+      "kind": "text",
+      "grid": "A8:D9",
+      "note": "Renewed tranquility room by room caption",
+      "box": {
+        "x": 0.029296875,
+        "y": 0.892578125,
+        "w": 0.22786458333333334,
+        "h": 0.01953125
+      },
+      "snap": false
+    },
+    {
+      "id": "home-link",
+      "kind": "control",
+      "grid": "A9:D9",
+      "note": "01 For your home service link",
+      "box": {
+        "x": 0.06315104166666667,
+        "y": 0.939453125,
+        "w": 0.15950520833333334,
+        "h": 0.0390625
+      },
+      "snap": false
+    },
+    {
+      "id": "property-link",
+      "kind": "control",
+      "grid": "E9:G9",
+      "note": "02 For your property service link",
+      "box": {
+        "x": 0.419921875,
+        "y": 0.939453125,
+        "w": 0.185546875,
+        "h": 0.0390625
+      },
+      "snap": false
+    },
+    {
+      "id": "start-link",
+      "kind": "control",
+      "grid": "I9:J9",
+      "note": "Blue Start your quote link",
+      "box": {
+        "x": 0.8098958333333334,
+        "y": 0.9423828125,
+        "w": 0.11393229166666667,
+        "h": 0.029296875
+      },
+      "snap": false
+    }
+  ]
+}

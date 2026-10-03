@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-02T20:55:53.618603+00:00",
+  "title": "Design System: Dream Clean",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cream Paper",
+        "tonalRamp": [
+          "oklch(15% 0.00823 91.48)",
+          "oklch(27% 0.00823 91.48)",
+          "oklch(38% 0.00823 91.48)",
+          "oklch(49% 0.00823 91.48)",
+          "oklch(61% 0.00823 91.48)",
+          "oklch(72% 0.00823 91.48)",
+          "oklch(84% 0.00823 91.48)",
+          "oklch(95% 0.00823 91.48)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Forest Ink",
+        "tonalRamp": [
+          "oklch(15% 0.03162 169.33)",
+          "oklch(27% 0.03162 169.33)",
+          "oklch(38% 0.03162 169.33)",
+          "oklch(49% 0.03162 169.33)",
+          "oklch(61% 0.03162 169.33)",
+          "oklch(72% 0.03162 169.33)",
+          "oklch(84% 0.03162 169.33)",
+          "oklch(95% 0.03162 169.33)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "Contact Blue",
+        "tonalRamp": [
+          "oklch(15% 0.11552 257.31)",
+          "oklch(27% 0.11552 257.31)",
+          "oklch(38% 0.11552 257.31)",
+          "oklch(49% 0.11552 257.31)",
+          "oklch(61% 0.11552 257.31)",
+          "oklch(72% 0.11552 257.31)",
+          "oklch(84% 0.11552 257.31)",
+          "oklch(95% 0.11552 257.31)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Fine Rule",
+        "tonalRamp": [
+          "oklch(15% 0.01805 160.20)",
+          "oklch(27% 0.01805 160.20)",
+          "oklch(38% 0.01805 160.20)",
+          "oklch(49% 0.01805 160.20)",
+          "oklch(61% 0.01805 160.20)",
+          "oklch(72% 0.01805 160.20)",
+          "oklch(84% 0.01805 160.20)",
+          "oklch(95% 0.01805 160.20)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Forest",
+        "tonalRamp": [
+          "oklch(15% 0.03009 160.92)",
+          "oklch(27% 0.03009 160.92)",
+          "oklch(38% 0.03009 160.92)",
+          "oklch(49% 0.03009 160.92)",
+          "oklch(61% 0.03009 160.92)",
+          "oklch(72% 0.03009 160.92)",
+          "oklch(84% 0.03009 160.92)",
+          "oklch(95% 0.03009 160.92)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      },
+      "button-hover": {
+        "role": "primary",
+        "displayName": "Forest Hover",
+        "tonalRamp": [
+          "oklch(15% 0.04479 162.63)",
+          "oklch(27% 0.04479 162.63)",
+          "oklch(38% 0.04479 162.63)",
+          "oklch(49% 0.04479 162.63)",
+          "oklch(61% 0.04479 162.63)",
+          "oklch(72% 0.04479 162.63)",
+          "oklch(84% 0.04479 162.63)",
+          "oklch(95% 0.04479 162.63)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      },
+      "button-disabled": {
+        "role": "primary",
+        "displayName": "Quiet Forest",
+        "tonalRamp": [
+          "oklch(15% 0.02609 155.31)",
+          "oklch(27% 0.02609 155.31)",
+          "oklch(38% 0.02609 155.31)",
+          "oklch(49% 0.02609 155.31)",
+          "oklch(61% 0.02609 155.31)",
+          "oklch(72% 0.02609 155.31)",
+          "oklch(84% 0.02609 155.31)",
+          "oklch(95% 0.02609 155.31)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      },
+      "field-background": {
+        "role": "neutral",
+        "displayName": "Field Paper",
+        "tonalRamp": [
+          "oklch(15% 0.00538 95.10)",
+          "oklch(27% 0.00538 95.10)",
+          "oklch(38% 0.00538 95.10)",
+          "oklch(49% 0.00538 95.10)",
+          "oklch(61% 0.00538 95.10)",
+          "oklch(72% 0.00538 95.10)",
+          "oklch(84% 0.00538 95.10)",
+          "oklch(95% 0.00538 95.10)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      },
+      "field-border": {
+        "role": "neutral",
+        "displayName": "Field Stroke",
+        "tonalRamp": [
+          "oklch(15% 0.02241 145.31)",
+          "oklch(27% 0.02241 145.31)",
+          "oklch(38% 0.02241 145.31)",
+          "oklch(49% 0.02241 145.31)",
+          "oklch(61% 0.02241 145.31)",
+          "oklch(72% 0.02241 145.31)",
+          "oklch(84% 0.02241 145.31)",
+          "oklch(95% 0.02241 145.31)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      },
+      "review-rule": {
+        "role": "neutral",
+        "displayName": "Light Review Rule",
+        "tonalRamp": [
+          "oklch(15% 0.01974 145.38)",
+          "oklch(27% 0.01974 145.38)",
+          "oklch(38% 0.01974 145.38)",
+          "oklch(49% 0.01974 145.38)",
+          "oklch(61% 0.01974 145.38)",
+          "oklch(72% 0.01974 145.38)",
+          "oklch(84% 0.01974 145.38)",
+          "oklch(95% 0.01974 145.38)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      },
+      "review-muted": {
+        "role": "neutral",
+        "displayName": "Light Review Detail",
+        "tonalRamp": [
+          "oklch(15% 0.01663 133.83)",
+          "oklch(27% 0.01663 133.83)",
+          "oklch(38% 0.01663 133.83)",
+          "oklch(49% 0.01663 133.83)",
+          "oklch(61% 0.01663 133.83)",
+          "oklch(72% 0.01663 133.83)",
+          "oklch(84% 0.01663 133.83)",
+          "oklch(95% 0.01663 133.83)"
+        ],
+        "rampPurpose": "Synthesized display ramp; not an additional implemented token scale."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Dominant two-line hero; selected for nearest matching metrics to the pinned reference.",
+        "mobileFontSize": "clamp(40px, 12.4vw, 84px)",
+        "mobileLineHeight": 1.06
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section statements.",
+        "mobileFontSize": "clamp(36px, 9.5vw, 50px)",
+        "mobileLineHeight": 1.13
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Georgia subsection headings.",
+        "mobileFontSize": "30px"
+      },
+      "body": {
+        "displayName": "Practical body",
+        "purpose": "Explanatory copy, max 65ch.",
+        "mobileFontSize": "16px"
+      },
+      "label": {
+        "displayName": "Form label",
+        "purpose": "Readable labels above fields."
+      },
+      "field": {
+        "displayName": "Field text",
+        "purpose": "Input and select content."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "action-hover",
+        "value": "background-color .2s ease",
+        "purpose": "Primary action background feedback."
+      },
+      {
+        "name": "anchor-scroll",
+        "value": "smooth",
+        "purpose": "In-page navigation; auto when prefers-reduced-motion is reduce."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition: none !important",
+        "purpose": "All transitions suppressed for reduced-motion preference."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-content",
+        "value": "1800px",
+        "purpose": "Lower sections maintain a 1570px content measure above this width."
+      },
+      {
+        "name": "compact-desktop",
+        "value": "1100px",
+        "purpose": "70px block and 5% inline section padding at or below this width."
+      },
+      {
+        "name": "stacked",
+        "value": "900px",
+        "purpose": "Major columns stack at or below this width; before/after figures remain paired."
+      },
+      {
+        "name": "small-phone",
+        "value": "370px",
+        "purpose": "Form becomes one column and hero/section gutters become 18px at or below this width."
+      }
+    ],
+    "focus": {
+      "value": "2px solid var(--blue); outline-offset: 6px",
+      "purpose": "Shared visible keyboard focus."
+    },
+    "referenceExceptions": [
+      {
+        "element": "Homepage location line",
+        "authority": "User-pinned mock-ups/0.png; confirmed direction contract and finish review.",
+        "scope": "Homepage only; not a mandatory general eyebrow pattern."
+      },
+      {
+        "element": "01/02 service destinations",
+        "authority": "User-selected reference and confirmed direction contract.",
+        "scope": "Homepage service navigation."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary quote action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Flat serif action linking to the inline questionnaire.",
+      "html": "<a class=\"ds-button\" href=\"#quote\">Request a quote <svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></a>",
+      "css": ".ds-button{display:inline-flex;align-items:center;gap:24px;background:var(--ink,#20362e);color:var(--paper,#f7f5ef);padding:17px 22px;font:21px Georgia,serif;text-decoration:none;border-radius:0;transition:background-color .2s ease}.ds-button:hover{background:#345344;color:var(--paper,#f7f5ef)}.ds-button svg{width:26px;height:26px;stroke:currentColor;stroke-width:1.25}.ds-button:focus-visible{outline:2px solid var(--blue,#3866a7);outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-button{transition:none}}"
+    },
+    {
+      "name": "Disabled quote submission",
+      "kind": "button",
+      "refersTo": "button-disabled",
+      "description": "Full-width submission control for the explicitly inactive form preview.",
+      "html": "<button class=\"ds-disabled\" disabled>Request a quote <svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></button>",
+      "css": ".ds-disabled{display:flex;align-items:center;gap:24px;width:100%;border:0;border-radius:0;padding:20px 26px;font:23px Georgia,serif;background:#56665b;color:var(--paper,#f7f5ef);cursor:not-allowed}.ds-disabled:hover{background:#56665b}.ds-disabled svg{width:26px;height:26px;stroke:currentColor;stroke-width:1.25}.ds-disabled:focus-visible{outline:2px solid var(--blue,#3866a7);outline-offset:6px}"
+    },
+    {
+      "name": "Contact text action",
+      "kind": "button",
+      "refersTo": "text-link",
+      "description": "Lightweight contact action with an inline SVG arrow.",
+      "html": "<a class=\"ds-text-link\" href=\"#quote\">Let\u2019s talk about your home <svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M3 12h18m-7-7 7 7-7 7\"/></svg></a>",
+      "css": ".ds-text-link{display:inline-flex;align-items:center;gap:18px;padding:12px 0;font:19px Georgia,serif;color:var(--blue,#3866a7);text-decoration:none}.ds-text-link:hover{text-decoration:underline}.ds-text-link svg{width:26px;height:26px;stroke:currentColor;stroke-width:1.25}.ds-text-link:focus-visible{outline:2px solid var(--blue,#3866a7);outline-offset:6px}"
+    },
+    {
+      "name": "Labeled input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Practical square form control with visible label and help.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-area\">Square footage</label><input id=\"ds-area\" type=\"number\" min=\"1\" aria-describedby=\"ds-area-help\"><small id=\"ds-area-help\">An estimate is fine.</small></div>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:10px;color:var(--ink,#20362e)}.ds-field label{font:14px/1.5 system-ui,sans-serif}.ds-field input{font:16px system-ui,sans-serif;width:100%;min-width:0;min-height:50px;padding:12px;border:1px solid #859185;border-radius:0;background:#fcfbf7;color:var(--ink,#20362e);caret-color:var(--blue,#3866a7);accent-color:var(--blue,#3866a7)}.ds-field input:focus{border-color:var(--blue,#3866a7)}.ds-field input:focus-visible{outline:2px solid var(--blue,#3866a7);outline-offset:6px}.ds-field small{font:12px/1.5 system-ui,sans-serif;color:var(--muted,#4c6055)}"
+    },
+    {
+      "name": "Visible main navigation",
+      "kind": "nav",
+      "description": "Georgia links with a fine desktop separator and a visible mobile row.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#housekeeping\">Housekeeping</a><a href=\"#property-cleaning\">Property cleaning</a><a href=\"#about\">About</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:4.8vw;border-left:1px solid var(--rule,#65716a);padding:.7vw 3.8vw;font:1.43vw Georgia,serif;color:var(--ink,#20362e)}.ds-nav a{color:inherit;text-decoration:none;white-space:nowrap}.ds-nav a:hover{color:var(--blue,#3866a7)}.ds-nav a:focus-visible{outline:2px solid var(--blue,#3866a7);outline-offset:6px}@media(max-width:900px){.ds-nav{justify-content:space-between;gap:12px;border:0;padding:0;font-size:15px}.ds-nav a{padding:10px 0}}"
+    },
+    {
+      "name": "Review column",
+      "kind": "custom",
+      "refersTo": "review-panel",
+      "description": "Pale ruled quotation and attribution on a forest field.",
+      "html": "<div class=\"ds-review-panel\"><figure class=\"ds-review\"><blockquote>\u201cDream Clean is the Dream Team! They were truly a lifesaver for me and my family.\u201d</blockquote><figcaption>Beth Ann McKenzie<span>Facebook recommendation \u00b7 September 2024</span></figcaption></figure></div>",
+      "css": ".ds-review-panel{background:var(--ink,#20362e);color:var(--paper,#f7f5ef);padding:36px}.ds-review{margin:0;display:flex;flex-direction:column;border-top:1px solid #a9b4a9;padding-top:30px}.ds-review blockquote{font:25px/1.45 Georgia,serif;margin:0 0 32px}.ds-review figcaption{margin-top:auto;font:14px/1.6 system-ui,sans-serif}.ds-review figcaption span{display:block;color:#d6ddd2;font-size:12px;margin-top:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Open House",
+    "overview": "Dream Clean uses the calm of a property brochure: a warm paper ground, forest lettering, generous serif statements, and photographs given room to breathe. Thin rules organize the page without enclosing every item in a card. The existing thought-bubble logo remains the business identity.\n\nThe system records the implemented, user-selected reference at `mock-ups/0.png`, with the homepage contract in `.impeccable/surfaces/src-pages-index-astro.md` and shipping review in `.impeccable/review/finish-review.md`. The location line and numbered service destinations are specifically pinned homepage details; they are not requirements for every future surface.",
+    "keyCharacteristics": [
+      "Warm cream paper and forest ink, with blue contact accents.",
+      "Large high-contrast serif statements and clear practical form typography.",
+      "Flat rectangular actions, thin dividers, and open columns.",
+      "Architectural illustration distinguished from actual cleaning photographs."
+    ],
+    "rules": [
+      {
+        "name": "The Contact Color Rule",
+        "body": "Use blue for contact actions and focus feedback; keep major reading surfaces paper and forest.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Use expressive serif type for statements and narrative, and system-ui for practical explanations, attribution, and form details.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "Separate groups with space, rules, and tonal fields rather than lifted cards.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** preserve the supplied logo and the high-contrast serif character of the selected reference.",
+      "**Do** use space, thin rules, and tonal fields to organize flat rectangular surfaces.",
+      "**Do** retain visible keyboard focus and reduced-motion behavior.",
+      "**Do** keep illustrative photography distinct from actual work evidence.",
+      "**Do** preserve the pinned location line and numbered service destinations on this homepage."
+    ],
+    "donts": [
+      "**Don't** turn the homepage's pinned location line or numbering into mandatory decoration on every new surface.",
+      "**Don't** replace the existing rectangular action and open-column treatment with lifted or rounded cards.",
+      "**Don't** imply that the disabled questionnaire sends information or completes a booking.",
+      "**Don't** replace SVG arrows with decorative text glyphs."
+    ]
+  }
+}

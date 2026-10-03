@@ -1,0 +1,772 @@
+{
+  "tool": "comp-spec",
+  "version": 1,
+  "createdAt": "2026-10-02T05:09:29.185Z",
+  "comp": "mock-ups/0.png",
+  "warnings": [
+    "region interior: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)"
+  ],
+  "uncoveredInkCells": [
+    "A0",
+    "A9"
+  ],
+  "compSize": {
+    "width": 1536,
+    "height": 1024
+  },
+  "aspect": 1.5,
+  "orientation": "landscape",
+  "palette": [
+    {
+      "hex": "#f7f7e9",
+      "coverage": 0.6166
+    },
+    {
+      "hex": "#b29d87",
+      "coverage": 0.1749
+    },
+    {
+      "hex": "#8d745a",
+      "coverage": 0.0834
+    },
+    {
+      "hex": "#d5c7b3",
+      "coverage": 0.0657
+    },
+    {
+      "hex": "#694d33",
+      "coverage": 0.0593
+    }
+  ],
+  "bands": [
+    {
+      "y": 0.2118,
+      "strength": 0.2658
+    },
+    {
+      "y": 0.2706,
+      "strength": 0.4497
+    },
+    {
+      "y": 0.3176,
+      "strength": 0.565
+    },
+    {
+      "y": 0.3765,
+      "strength": 1
+    },
+    {
+      "y": 0.4118,
+      "strength": 0.8547
+    },
+    {
+      "y": 0.8824,
+      "strength": 1
+    },
+    {
+      "y": 0.9294,
+      "strength": 0.2536
+    },
+    {
+      "y": 0.9529,
+      "strength": 0.2258
+    }
+  ],
+  "regions": [
+    {
+      "id": "logo",
+      "kind": "image",
+      "note": "Existing Dream Clean thought bubble logo",
+      "grid": "A0:B0",
+      "snap": false,
+      "box": {
+        "x": 0.0618,
+        "y": 0.0049,
+        "w": 0.1068,
+        "h": 0.0938
+      },
+      "px": {
+        "x": 95,
+        "y": 5,
+        "w": 164,
+        "h": 96
+      },
+      "aspect": 1.7083,
+      "palette": [
+        {
+          "hex": "#f7f7ea",
+          "coverage": 0.9065
+        },
+        {
+          "hex": "#a0a29e",
+          "coverage": 0.0404
+        },
+        {
+          "hex": "#101412",
+          "coverage": 0.0214
+        },
+        {
+          "hex": "#5d5f5f",
+          "coverage": 0.0167
+        },
+        {
+          "hex": "#c8cac0",
+          "coverage": 0.015
+        }
+      ],
+      "detail": {
+        "energy": 26.9432
+      },
+      "medium": "raster",
+      "plate": "public/images/logo.png",
+      "text": null
+    },
+    {
+      "id": "nav",
+      "kind": "chrome",
+      "note": "Housekeeping Property cleaning About navigation links",
+      "grid": "C0:F0",
+      "snap": false,
+      "box": {
+        "x": 0.2441,
+        "y": 0.0391,
+        "w": 0.3177,
+        "h": 0.0342
+      },
+      "px": {
+        "x": 375,
+        "y": 40,
+        "w": 488,
+        "h": 35
+      },
+      "aspect": 13.9429,
+      "palette": [
+        {
+          "hex": "#f8f8ea",
+          "coverage": 0.8775
+        },
+        {
+          "hex": "#bcc1bd",
+          "coverage": 0.0571
+        },
+        {
+          "hex": "#7a8581",
+          "coverage": 0.0286
+        },
+        {
+          "hex": "#243434",
+          "coverage": 0.0234
+        },
+        {
+          "hex": "#525a56",
+          "coverage": 0.0135
+        }
+      ],
+      "detail": {
+        "energy": 41.6883
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "phone",
+      "kind": "text",
+      "note": "Blue phone number (678) 232-8614",
+      "grid": "I0:J0",
+      "snap": false,
+      "box": {
+        "x": 0.8203,
+        "y": 0.0381,
+        "w": 0.1152,
+        "h": 0.0313
+      },
+      "px": {
+        "x": 1260,
+        "y": 39,
+        "w": 177,
+        "h": 32
+      },
+      "aspect": 5.5313,
+      "palette": [
+        {
+          "hex": "#f7f7ed",
+          "coverage": 0.7658
+        },
+        {
+          "hex": "#7695bd",
+          "coverage": 0.0817
+        },
+        {
+          "hex": "#4873b0",
+          "coverage": 0.077
+        },
+        {
+          "hex": "#bdc8dc",
+          "coverage": 0.0616
+        },
+        {
+          "hex": "#3161b1",
+          "coverage": 0.0139
+        }
+      ],
+      "detail": {
+        "energy": 36.1813
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 13,
+          "capHeightPx": 19.4,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.6442,
+          "advTall": 0.6442,
+          "advX": null,
+          "gap": 0.1417,
+          "xRatio": 0.4058,
+          "stemW": 0.1366,
+          "contrast": 1.1272,
+          "serif": 1.2787,
+          "densTall": 0.3889,
+          "densX": null,
+          "weight": 0.3889
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "location",
+      "kind": "text",
+      "note": "Macon and Middle Georgia location label",
+      "grid": "A1:D1",
+      "snap": false,
+      "box": {
+        "x": 0.0456,
+        "y": 0.1445,
+        "w": 0.2493,
+        "h": 0.0234
+      },
+      "px": {
+        "x": 70,
+        "y": 148,
+        "w": 383,
+        "h": 24
+      },
+      "aspect": 15.9583,
+      "palette": [
+        {
+          "hex": "#f8f8ea",
+          "coverage": 0.9041
+        },
+        {
+          "hex": "#414747",
+          "coverage": 0.0346
+        },
+        {
+          "hex": "#314232",
+          "coverage": 0.0297
+        },
+        {
+          "hex": "#b7beb4",
+          "coverage": 0.0178
+        },
+        {
+          "hex": "#838b80",
+          "coverage": 0.0138
+        }
+      ],
+      "detail": {
+        "energy": 42.3426
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 22,
+          "capHeightPx": 10.6,
+          "inkIsDark": true,
+          "allCaps": true,
+          "advance": 0.7551,
+          "advTall": 0.7551,
+          "advX": null,
+          "gap": 0.0315,
+          "xRatio": null,
+          "stemW": 0.1906,
+          "contrast": 1.2152,
+          "serif": null,
+          "densTall": 0.5541,
+          "densX": null,
+          "weight": 0.5541
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "note": "A clean home. A calmer day. large serif two-line headline",
+      "grid": "A2:F3",
+      "snap": false,
+      "box": {
+        "x": 0.0456,
+        "y": 0.1807,
+        "w": 0.4622,
+        "h": 0.21
+      },
+      "px": {
+        "x": 70,
+        "y": 185,
+        "w": 710,
+        "h": 215
+      },
+      "aspect": 3.3023,
+      "palette": [
+        {
+          "hex": "#f8f7e9",
+          "coverage": 0.8197
+        },
+        {
+          "hex": "#232727",
+          "coverage": 0.089
+        },
+        {
+          "hex": "#233222",
+          "coverage": 0.0678
+        },
+        {
+          "hex": "#9ca09b",
+          "coverage": 0.0146
+        },
+        {
+          "hex": "#525952",
+          "coverage": 0.0089
+        }
+      ],
+      "detail": {
+        "energy": 59.1288
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 15,
+          "capHeightPx": 85,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.6589,
+          "advTall": 0.7471,
+          "advX": 0.6236,
+          "gap": 0.0353,
+          "xRatio": 0.6781,
+          "stemW": 0.1268,
+          "contrast": 2.3839,
+          "serif": 2.0965,
+          "densTall": 0.3229,
+          "densX": 0.3715,
+          "weight": 0.3229
+        },
+        "widthClass": "normal",
+        "weightClass": "light",
+        "chosen": {
+          "family": "Playfair Display",
+          "weight": 400,
+          "fontSizePx": 121,
+          "source": "catalog",
+          "estimatedSize": true,
+          "stamp": "602e1a6c1136"
+        }
+      }
+    },
+    {
+      "id": "intro",
+      "kind": "text",
+      "note": "Housekeeping and move-in move-out cleaning paragraph",
+      "grid": "H1:J2",
+      "snap": false,
+      "box": {
+        "x": 0.6999,
+        "y": 0.1895,
+        "w": 0.2539,
+        "h": 0.0938
+      },
+      "px": {
+        "x": 1075,
+        "y": 194,
+        "w": 390,
+        "h": 96
+      },
+      "aspect": 4.0625,
+      "palette": [
+        {
+          "hex": "#f7f7ec",
+          "coverage": 0.8421
+        },
+        {
+          "hex": "#172923",
+          "coverage": 0.0511
+        },
+        {
+          "hex": "#6a766e",
+          "coverage": 0.0412
+        },
+        {
+          "hex": "#979f99",
+          "coverage": 0.0355
+        },
+        {
+          "hex": "#c2c5c0",
+          "coverage": 0.03
+        }
+      ],
+      "detail": {
+        "energy": 71.1214
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 3,
+          "glyphs": 79,
+          "capHeightPx": 19.7,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.5733,
+          "advTall": 0.5856,
+          "advX": 0.6121,
+          "gap": 0.0753,
+          "xRatio": 0.6503,
+          "stemW": 0.1302,
+          "contrast": 1.4643,
+          "serif": 1.6605,
+          "densTall": 0.4124,
+          "densX": 0.4658,
+          "weight": 0.4124
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "quote",
+      "kind": "control",
+      "note": "Forest rectangular Request a quote button",
+      "grid": "H3:J3",
+      "snap": false,
+      "box": {
+        "x": 0.7018,
+        "y": 0.3086,
+        "w": 0.2526,
+        "h": 0.0654
+      },
+      "px": {
+        "x": 1078,
+        "y": 316,
+        "w": 388,
+        "h": 67
+      },
+      "aspect": 5.791,
+      "palette": [
+        {
+          "hex": "#273728",
+          "coverage": 0.8886
+        },
+        {
+          "hex": "#e7e9e7",
+          "coverage": 0.0543
+        },
+        {
+          "hex": "#7a887e",
+          "coverage": 0.0319
+        },
+        {
+          "hex": "#afb8b2",
+          "coverage": 0.0168
+        },
+        {
+          "hex": "#535e54",
+          "coverage": 0.0084
+        }
+      ],
+      "detail": {
+        "energy": 24.9105
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "interior",
+      "kind": "image",
+      "note": "Panoramic sunlit living room sofa kitchen and wooden floor photograph",
+      "grid": "A4:J8",
+      "bleed": true,
+      "snap": false,
+      "box": {
+        "x": 0,
+        "y": 0.4092,
+        "w": 1,
+        "h": 0.4707
+      },
+      "px": {
+        "x": 0,
+        "y": 419,
+        "w": 1536,
+        "h": 482
+      },
+      "aspect": 3.1867,
+      "palette": [
+        {
+          "hex": "#b19d87",
+          "coverage": 0.4031
+        },
+        {
+          "hex": "#8d745b",
+          "coverage": 0.1937
+        },
+        {
+          "hex": "#d8c9b3",
+          "coverage": 0.1497
+        },
+        {
+          "hex": "#6a4e32",
+          "coverage": 0.1428
+        },
+        {
+          "hex": "#f1efeb",
+          "coverage": 0.1107
+        }
+      ],
+      "detail": {
+        "energy": 45.3265
+      },
+      "medium": "raster",
+      "plate": "public/images/tranquil-home.png",
+      "text": null
+    },
+    {
+      "id": "caption",
+      "kind": "text",
+      "note": "Renewed tranquility room by room caption",
+      "grid": "A8:D9",
+      "snap": false,
+      "box": {
+        "x": 0.0293,
+        "y": 0.8926,
+        "w": 0.2279,
+        "h": 0.0195
+      },
+      "px": {
+        "x": 45,
+        "y": 914,
+        "w": 350,
+        "h": 20
+      },
+      "aspect": 17.5,
+      "palette": [
+        {
+          "hex": "#f7f7ec",
+          "coverage": 0.8536
+        },
+        {
+          "hex": "#8b928a",
+          "coverage": 0.0596
+        },
+        {
+          "hex": "#b6b9b4",
+          "coverage": 0.0447
+        },
+        {
+          "hex": "#222c27",
+          "coverage": 0.0248
+        },
+        {
+          "hex": "#6f716f",
+          "coverage": 0.0174
+        }
+      ],
+      "detail": {
+        "energy": 55.9213
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 28,
+          "capHeightPx": 12.3,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.6484,
+          "advTall": 0.4661,
+          "advX": 0.6484,
+          "gap": 0.1621,
+          "xRatio": 0.6503,
+          "stemW": 0.1705,
+          "contrast": 1.4194,
+          "serif": 1.636,
+          "densTall": 0.5495,
+          "densX": 0.5311,
+          "weight": 0.5495
+        },
+        "widthClass": "normal",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "home-link",
+      "kind": "control",
+      "note": "01 For your home service link",
+      "grid": "A9:D9",
+      "snap": false,
+      "box": {
+        "x": 0.0632,
+        "y": 0.9395,
+        "w": 0.1595,
+        "h": 0.0391
+      },
+      "px": {
+        "x": 97,
+        "y": 962,
+        "w": 245,
+        "h": 40
+      },
+      "aspect": 6.125,
+      "palette": [
+        {
+          "hex": "#f7f7ea",
+          "coverage": 0.8781
+        },
+        {
+          "hex": "#0c211f",
+          "coverage": 0.0663
+        },
+        {
+          "hex": "#3e4c4b",
+          "coverage": 0.0221
+        },
+        {
+          "hex": "#c0c2c0",
+          "coverage": 0.0194
+        },
+        {
+          "hex": "#253d2d",
+          "coverage": 0.0141
+        }
+      ],
+      "detail": {
+        "energy": 41.9694
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "property-link",
+      "kind": "control",
+      "note": "02 For your property service link",
+      "grid": "E9:G9",
+      "snap": false,
+      "box": {
+        "x": 0.4199,
+        "y": 0.9395,
+        "w": 0.1855,
+        "h": 0.0391
+      },
+      "px": {
+        "x": 645,
+        "y": 962,
+        "w": 285,
+        "h": 40
+      },
+      "aspect": 7.125,
+      "palette": [
+        {
+          "hex": "#f7f7eb",
+          "coverage": 0.8705
+        },
+        {
+          "hex": "#132524",
+          "coverage": 0.0452
+        },
+        {
+          "hex": "#4e5f59",
+          "coverage": 0.033
+        },
+        {
+          "hex": "#939a98",
+          "coverage": 0.0268
+        },
+        {
+          "hex": "#c0c7c3",
+          "coverage": 0.0245
+        }
+      ],
+      "detail": {
+        "energy": 54.5169
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "start-link",
+      "kind": "control",
+      "note": "Blue Start your quote link",
+      "grid": "I9:J9",
+      "snap": false,
+      "box": {
+        "x": 0.8099,
+        "y": 0.9424,
+        "w": 0.1139,
+        "h": 0.0293
+      },
+      "px": {
+        "x": 1244,
+        "y": 965,
+        "w": 175,
+        "h": 30
+      },
+      "aspect": 5.8333,
+      "palette": [
+        {
+          "hex": "#f7f7ec",
+          "coverage": 0.8593
+        },
+        {
+          "hex": "#9fb2cf",
+          "coverage": 0.0559
+        },
+        {
+          "hex": "#3866a7",
+          "coverage": 0.0356
+        },
+        {
+          "hex": "#cad5e4",
+          "coverage": 0.0254
+        },
+        {
+          "hex": "#6889b6",
+          "coverage": 0.0237
+        }
+      ],
+      "detail": {
+        "energy": 27.0522
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    }
+  ]
+}

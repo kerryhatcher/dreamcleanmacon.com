@@ -1,0 +1,339 @@
+{
+  "tool": "build-phase",
+  "version": 2,
+  "startedAt": "2026-10-02T05:08:00.775Z",
+  "comp": "mock-ups/0.png",
+  "direction": null,
+  "breakpoint": "1536x1024",
+  "artifact": null,
+  "phase": "review",
+  "phases": {
+    "comps": {
+      "status": "skipped",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [
+        {
+          "at": "2026-10-02T05:08:00.775Z",
+          "text": "started with an approved comp; the comp round happened before this state (surface round or manual)"
+        }
+      ],
+      "gate": null,
+      "forced": null
+    },
+    "spec": {
+      "status": "closed",
+      "openedAt": "2026-10-02T05:08:00.775Z",
+      "closedAt": "2026-10-02T05:10:44.394Z",
+      "attempts": 2,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "12 regions, 2 plates, 5 text regions measured",
+        "at": "2026-10-02T05:10:44.394Z"
+      },
+      "forced": null
+    },
+    "plates": {
+      "status": "closed",
+      "openedAt": "2026-10-02T05:10:44.394Z",
+      "closedAt": "2026-10-02T05:12:15.703Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "2/2 plates",
+        "at": "2026-10-02T05:12:15.703Z"
+      },
+      "forced": null
+    },
+    "hero": {
+      "status": "closed",
+      "openedAt": "2026-10-02T05:12:15.703Z",
+      "closedAt": "2026-10-02T20:38:13.373Z",
+      "attempts": 4,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "hero 87% (match)",
+        "score": 0.8652,
+        "verdict": "match",
+        "report": ".impeccable/review/diff/hero/report.json",
+        "sideBySide": "/home/kwhatcher/projects/dreamcleanmacon.com/.impeccable/review/diff/hero/side-by-side.png",
+        "worst": [
+          "logo drift 56%",
+          "intro drift 63%",
+          "property-link drift 68%"
+        ],
+        "worstIds": [
+          "logo",
+          "intro",
+          "property-link"
+        ],
+        "worstCrops": [
+          {
+            "id": "logo",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.5572,
+              "structure": 0.5984,
+              "color": 0.8824,
+              "colorIntersection": 0.8036,
+              "paletteMatch": 0.9248,
+              "detail": 0.399,
+              "detailRaw": 0.4771,
+              "detailAdded": 0.1563,
+              "bands": 0.6333
+            },
+            "file": ".impeccable/review/diff/hero/regions/logo.png"
+          },
+          {
+            "id": "intro",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.6317,
+              "structure": 0.508,
+              "color": 0.8039,
+              "colorIntersection": 0.6766,
+              "paletteMatch": 0.8725,
+              "detail": 0.5775,
+              "detailRaw": 0.6973,
+              "detailAdded": 0.2396,
+              "bands": 0.901
+            },
+            "file": ".impeccable/review/diff/hero/regions/intro.png"
+          },
+          {
+            "id": "property-link",
+            "verdict": "drift",
+            "score": {
+              "overall": 0.6776,
+              "structure": 0.709,
+              "color": 0.856,
+              "colorIntersection": 0.7681,
+              "paletteMatch": 0.9033,
+              "detail": 0.2948,
+              "detailRaw": 0.3937,
+              "detailAdded": 0.1979,
+              "bands": 0.4667
+            },
+            "file": ".impeccable/review/diff/hero/regions/property-link.png"
+          }
+        ],
+        "advisories": [
+          "(advisory, above the 72% bar; fix in the polish pass before responsive) 4 readings:",
+          "  text location: letter-spacing is wider than the comp's (gap 0.547 vs 0.032 of the cap height); set letter-spacing to close it by about 5px",
+          "  text phone: ink is #3f6cac in the build, #7695bd in the comp; use the comp's colour",
+          "  text caption: ink is #415249 in the build, #8b928a in the comp; use the comp's colour",
+          "  control start-link: its rule sits 12px into the box in the comp and 18px in the build (+6px), so the strip is taller than the comp's; match the height, not only the position"
+        ],
+        "regionVerdicts": {
+          "logo": "drift",
+          "nav": "drift",
+          "phone": "drift",
+          "location": "match",
+          "headline": "drift",
+          "intro": "drift",
+          "quote": "match",
+          "interior": "match",
+          "caption": "drift",
+          "home-link": "drift",
+          "property-link": "drift",
+          "start-link": "drift"
+        },
+        "at": "2026-10-02T20:38:13.373Z"
+      },
+      "forced": null,
+      "readingsSeen": {
+        "text location: cap height 23.5px in the build, 10.6px in the comp (+122%); set font-size so the cap height renders at 10.6px": 1,
+        "text phone: ink is #f8f8f8 in the build, #7695bd in the comp; use the comp's colour": 1,
+        "text caption: ink is #183aa8 in the build, #8b928a in the comp; use the comp's colour": 1,
+        "text headline: letter-spacing is wider than the comp's (gap 0.081 vs 0.035 of the cap height); set letter-spacing to close it by about 4px": 1,
+        "text headline: the face renders 54% lighter than the comp's (ink density 0.15 vs 0.32); raise a weight step or use the ranked face": 1,
+        "text headline: cap height 18px in the build, 85px in the comp (-79%); set font-size so the cap height renders at 85px (font-match ranked Playfair Display 400 at 121px)": 1,
+        "text headline: 1 line in the build, 2 in the comp; the measure (max-width, font-size, letter-spacing) wraps it differently, so the block is a different shape": 1,
+        "text headline: ink is #5c6363 in the build, #232727 in the comp; use the comp's colour": 1,
+        "text headline: it starts 397px further right than in the comp": 1,
+        "text location: letter-spacing is wider than the comp's (gap 0.547 vs 0.032 of the cap height); set letter-spacing to close it by about 5px": 2,
+        "text intro: 2 lines in the build, 3 in the comp; the measure (max-width, font-size, letter-spacing) wraps it differently, so the block is a different shape": 1,
+        "text phone: ink is #3f6cac in the build, #7695bd in the comp; use the comp's colour": 2,
+        "text caption: ink is #415249 in the build, #8b928a in the comp; use the comp's colour": 2,
+        "control quote: its rule sits 1px into the box in the comp and 16px in the build (+15px), so the strip is taller than the comp's; match the height, not only the position": 1,
+        "control start-link: its rule sits 12px into the box in the comp and 18px in the build (+6px), so the strip is taller than the comp's; match the height, not only the position": 2
+      },
+      "records": 2,
+      "history": [
+        {
+          "at": "2026-10-02T05:16:40.958Z",
+          "score": 0.3827,
+          "worstIds": [
+            "interior",
+            "quote",
+            "logo"
+          ],
+          "regionVerdicts": {
+            "logo": "missing",
+            "nav": "missing",
+            "phone": "missing",
+            "location": "contradicted",
+            "headline": "contradicted",
+            "intro": "missing",
+            "quote": "missing",
+            "interior": "missing",
+            "caption": "missing",
+            "home-link": "missing",
+            "property-link": "missing",
+            "start-link": "missing"
+          },
+          "artifactHash": null
+        },
+        {
+          "at": "2026-10-02T05:17:18.202Z",
+          "score": 0.2847,
+          "worstIds": [
+            "interior",
+            "quote",
+            "logo"
+          ],
+          "regionVerdicts": {
+            "logo": "missing",
+            "nav": "missing",
+            "phone": "missing",
+            "location": "missing",
+            "headline": "missing",
+            "intro": "missing",
+            "quote": "missing",
+            "interior": "missing",
+            "caption": "missing",
+            "home-link": "missing",
+            "property-link": "missing",
+            "start-link": "missing"
+          },
+          "artifactHash": null
+        },
+        {
+          "at": "2026-10-02T20:37:01.146Z",
+          "score": 0.8484,
+          "worstIds": [
+            "logo",
+            "intro",
+            "quote"
+          ],
+          "regionVerdicts": {
+            "logo": "drift",
+            "nav": "drift",
+            "phone": "drift",
+            "location": "match",
+            "headline": "drift",
+            "intro": "drift",
+            "quote": "missing",
+            "interior": "match",
+            "caption": "drift",
+            "home-link": "drift",
+            "property-link": "drift",
+            "start-link": "drift"
+          },
+          "artifactHash": null
+        },
+        {
+          "at": "2026-10-02T20:38:13.373Z",
+          "score": 0.8652,
+          "worstIds": [
+            "logo",
+            "intro",
+            "property-link"
+          ],
+          "regionVerdicts": {
+            "logo": "drift",
+            "nav": "drift",
+            "phone": "drift",
+            "location": "match",
+            "headline": "drift",
+            "intro": "drift",
+            "quote": "match",
+            "interior": "match",
+            "caption": "drift",
+            "home-link": "drift",
+            "property-link": "drift",
+            "start-link": "drift"
+          },
+          "artifactHash": null
+        }
+      ]
+    },
+    "sections": {
+      "status": "closed",
+      "openedAt": "2026-10-02T20:38:13.373Z",
+      "closedAt": "2026-10-02T20:41:28.757Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no mechanical gate",
+        "at": "2026-10-02T20:41:28.757Z"
+      },
+      "forced": null
+    },
+    "motion": {
+      "status": "closed",
+      "openedAt": "2026-10-02T20:41:28.757Z",
+      "closedAt": "2026-10-02T20:42:47.823Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no mechanical gate",
+        "at": "2026-10-02T20:42:47.823Z"
+      },
+      "forced": null
+    },
+    "responsive": {
+      "status": "closed",
+      "openedAt": "2026-10-02T20:42:47.823Z",
+      "closedAt": "2026-10-02T20:44:15.317Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "desktop 86% (match)",
+        "score": 0.8648,
+        "sideBySide": "/home/kwhatcher/projects/dreamcleanmacon.com/.impeccable/review/diff/desktop/side-by-side.png",
+        "at": "2026-10-02T20:44:15.317Z"
+      },
+      "forced": null
+    },
+    "review": {
+      "status": "closed",
+      "openedAt": "2026-10-02T20:44:15.317Z",
+      "closedAt": "2026-10-02T20:53:00.849Z",
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    }
+  },
+  "finish": {
+    "disposition": "ship",
+    "at": "2026-10-02T20:53:00.849Z",
+    "phaseAtFinish": "review"
+  },
+  "plates": {
+    "logo": {
+      "status": "ok",
+      "score": 0.4433,
+      "size": "500x500"
+    },
+    "interior": {
+      "status": "ok",
+      "score": 0.8206,
+      "size": "2172x724"
+    }
+  }
+}

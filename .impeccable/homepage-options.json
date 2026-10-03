@@ -1,0 +1,204 @@
+{
+  "title": "Dream Clean homepage direction",
+  "question": "Choose a direction for homeowners and property clients; each supports a quote form and calling.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Open House",
+      "kicker": "THE ROLL",
+      "lineage": "Property brochures and architectural folios",
+      "thesis": "A carefully prepared property opens into a clear invitation to inquire.",
+      "palette": [
+        "#f8f6f0",
+        "#20362e",
+        "#4d6dad"
+      ],
+      "materials": [
+        "uncoated brochure paper",
+        "large interior photography"
+      ],
+      "viewport": "Dream Clean above an expansive interior photograph; residential and property cleaning routes lead to a numbered quote questionnaire.",
+      "risk": "Could resemble a property listing unless cleaning and contact remain explicit.",
+      "comp": ".impeccable/mocks/decision/open-house.png",
+      "raised": [
+        {
+          "from": "Indoor Weather",
+          "raise": "One photographic focal moment owns the opening viewport."
+        },
+        {
+          "from": "Manga Page",
+          "raise": "Unequal sections pace the path from property to inquiry."
+        },
+        {
+          "from": "Teletext",
+          "raise": "Every service and inquiry destination is directly addressable."
+        },
+        {
+          "from": "Ink Basin",
+          "raise": "Motion settles and pauses rather than competing with the content."
+        },
+        {
+          "from": "Event Display",
+          "raise": "The selected service keeps its context visible through the questionnaire."
+        }
+      ]
+    },
+    {
+      "id": "pick",
+      "label": "The Welcome Book",
+      "kicker": "IMPECCABLE\u2019S PICK",
+      "lineage": "Guesthouse welcome books",
+      "thesis": "A personal local introduction connects housekeeping with homes ready for their next occupants.",
+      "palette": [
+        "#f5efe3",
+        "#2c3931",
+        "#4d6dad"
+      ],
+      "materials": [
+        "bound stationery",
+        "interior photographs"
+      ],
+      "viewport": "A broad book-like spread pairs Dream Clean\u2019s introduction with a property photograph and a clear Request a quote action.",
+      "risk": "Warm hospitality styling is familiar; avoid implying property management or hosting services.",
+      "comp": ".impeccable/mocks/decision/welcome-book.png"
+    },
+    {
+      "id": "quilt",
+      "label": "Homes, Pieced Together",
+      "verdict": "competitive",
+      "lineage": "Hand-pieced domestic quilts",
+      "thesis": "Photos and real customer words form a domestic patchwork of homes and property care.",
+      "palette": [
+        "#d6e2ed",
+        "#faf6ee",
+        "#202020",
+        "#ba4b3a"
+      ],
+      "materials": [
+        "chambray patches",
+        "stitched rules"
+      ],
+      "viewport": "An unequal photographic patchwork surrounds a calm cleaning introduction, then resolves into a plain numbered questionnaire.",
+      "case": "Strong domestic identification; less immediate clarity for commercial property clients.",
+      "risk": "Textile texture can crowd evidence and must stay away from form controls.",
+      "comp": ".impeccable/mocks/decision/quilt.png",
+      "board": "https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-memory-quilt-atlas.webp",
+      "hero": "https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-memory-quilt-atlas-hero.webp"
+    },
+    {
+      "id": "sun",
+      "label": "Indoor Weather",
+      "verdict": "declined",
+      "thesis": "A single room fills the opening with amber light.",
+      "palette": [
+        "#f5b947",
+        "#141414"
+      ],
+      "materials": [
+        "amber haze"
+      ],
+      "viewport": "A single room fills the opening with amber light.",
+      "risk": "Atmosphere obscures cleaning specifics.",
+      "case": "Loses audience identification and cleaning clarity to the property brochure.",
+      "kept": "One unmistakable focal moment."
+    },
+    {
+      "id": "manga",
+      "label": "Manga Page",
+      "verdict": "declined",
+      "thesis": "Cleaning information unfolds in asymmetrical sequential panels.",
+      "palette": [
+        "#ffffff",
+        "#111111"
+      ],
+      "materials": [
+        "screentone ink"
+      ],
+      "viewport": "Cleaning information unfolds in asymmetrical sequential panels.",
+      "risk": "Comic narration distracts both client groups.",
+      "case": "Loses audience identification and cleaning clarity to the property brochure.",
+      "kept": "Unequal sections establish deliberate pacing."
+    },
+    {
+      "id": "teletext",
+      "label": "Teletext",
+      "verdict": "declined",
+      "thesis": "Cleaning services and contact are addressed as numbered broadcast pages.",
+      "palette": [
+        "#000000",
+        "#00ffff",
+        "#ffff00"
+      ],
+      "materials": [
+        "character cells"
+      ],
+      "viewport": "Cleaning services and contact are addressed as numbered broadcast pages.",
+      "risk": "Unfamiliar navigation creates inquiry friction.",
+      "case": "Loses audience identification and cleaning clarity to the property brochure.",
+      "kept": "Directly addressable destinations."
+    },
+    {
+      "id": "basin",
+      "label": "Ink Basin",
+      "verdict": "declined",
+      "thesis": "A fluid surface settles beside a still service and quote margin.",
+      "palette": [
+        "#ffffff",
+        "#273c70"
+      ],
+      "materials": [
+        "marbled ink"
+      ],
+      "viewport": "A fluid surface settles beside a still service and quote margin.",
+      "risk": "Simulation competes with real business evidence.",
+      "case": "Loses audience identification and cleaning clarity to the property brochure.",
+      "kept": "Calm motion that settles."
+    },
+    {
+      "id": "event",
+      "label": "Event Display",
+      "verdict": "declined",
+      "thesis": "Service types radiate toward a central inquiry with contextual details.",
+      "palette": [
+        "#10171e",
+        "#f5db54",
+        "#60cfe3"
+      ],
+      "materials": [
+        "signal tracks"
+      ],
+      "viewport": "Service types radiate toward a central inquiry with contextual details.",
+      "risk": "Scientific notation makes household cleaning harder to understand.",
+      "case": "Loses audience identification and cleaning clarity to the property brochure.",
+      "kept": "Visible context for the selected service."
+    }
+  ],
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  },
+  "steer": true,
+  "canon": true,
+  "canonCard": {
+    "label": "The familiar cleaning homepage",
+    "thesis": "A conventional service website with a clean-room hero, service sections, reviews, and quote form.",
+    "palette": [
+      "#ffffff",
+      "#4d6dad",
+      "#172333"
+    ],
+    "materials": [
+      "clean grid",
+      "interior photography"
+    ],
+    "viewport": "Logo and navigation above a split headline/photo hero with Request a quote and phone actions.",
+    "risk": "Easy to recognize, but visually similar to other cleaning companies.",
+    "comp": ".impeccable/mocks/decision/canon.png"
+  },
+  "buildPath": {
+    "value": "comp",
+    "toggle": true
+  }
+}
