@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import ServicePage from '../layouts/ServicePage.astro';
+import before from '../../public/images/oven-before.jpg';
+import after from '../../public/images/oven-after.jpg';
+---
+<ServicePage title="Move-In & Move-Out Cleaning in Macon, GA | Dream Clean" description="Move-in and move-out cleaning in Macon and Middle Georgia for homes, apartments, and Airbnb properties. Discuss your property and request a Dream Clean quote." heading="Move-in / move-out cleaning in Macon, GA." service="Move-in / move-out cleaning" intro="Preparing a home for your arrival, leaving an apartment, or getting a property ready for its next occupants? Talk with Dream Clean about your move-in / move-out cleaning needs." relatedHref="housekeeping/" relatedLabel="Looking for help in the home you live in? Explore housekeeping.">
+  <section aria-labelledby="property-needs">
+    <h2 id="property-needs">Cleaning around a change of occupants.</h2>
+    <p>Dream Clean offers move-in / move-out cleaning for homes, apartments, apartment complexes, and Airbnb properties in Macon and Middle Georgia. Homeowners and property clients can discuss the property’s condition and the areas needing attention before the next occupants arrive.</p>
+    <p>For an apartment complex, share the number of units and any access or handover requirements. For an Airbnb property, explain the work needed and the date the space needs to be ready. Discuss the specific scope and available timing directly with Dream Clean.</p>
+  </section>
+  <section aria-labelledby="oven-work">
+    <h2 id="oven-work">Details worth discussing.</h2>
+    <p>Kitchens and appliance interiors may need particular attention when occupants change. These photos from Dream Clean’s Facebook page show an oven before and after cleaning. Mention appliance work in your inquiry so its scope and preparation can be discussed.</p>
+    <div class="work-pair">
+      <figure><Image src={before} alt="Before cleaning: baked-on residue inside an oven and on its glass door" widths={[400, 700, 1000]} sizes="(max-width: 700px) 44vw, 40vw" format="webp" loading="lazy" /><figcaption>Before oven cleaning</figcaption></figure>
+      <figure><Image src={after} alt="After cleaning: the same oven interior and glass door cleared of baked-on residue" widths={[400, 700, 1000]} sizes="(max-width: 700px) 44vw, 40vw" format="webp" loading="lazy" /><figcaption>After oven cleaning</figcaption></figure>
+    </div>
+  </section>
+  <section aria-labelledby="property-quote">
+    <h2 id="property-quote">Plan your property inquiry.</h2>
+    <ol><li>Share the property’s location, type, size, and whether it will be empty or furnished.</li><li>Describe its condition and priorities, including any appliance interiors you want to discuss.</li><li>Provide the move or handover date and explain how cleaners can access the property.</li><li>Confirm the agreed tasks, exclusions, price, and available timing with Dream Clean.</li></ol>
+    <p>If a landlord or property manager has a cleaning checklist, share its requirements during the conversation. Ask which items Dream Clean can address before relying on the visit for a handover deadline.</p>
+  </section>
+  <section aria-labelledby="property-prepare">
+    <h2 id="property-prepare">Prepare for access and handover.</h2>
+    <p>Discuss whether belongings will remain, who will provide access, and any restrictions at the property. Ask about supplies, equipment, and any preparation needed for the agreed work. For several units, explain which spaces will be ready for access and when.</p>
+    <p>Use the form below to send your contact information and optional property details, or call (678) 232-8614. A quote request starts the conversation; confirm the arrangements with Dream Clean before scheduling around them.</p>
+  </section>
+</ServicePage>

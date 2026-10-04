@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import ServicePage from '../layouts/ServicePage.astro';
+import before from '../../public/images/stovetop-before.jpg';
+import after from '../../public/images/stovetop-after.jpg';
+---
+<ServicePage title="Housekeeping in Macon, GA | Dream Clean" description="Housekeeping for homes in Macon and Middle Georgia. See Dream Clean’s work, prepare your cleaning priorities, and request a quote online or by phone." heading="Housekeeping in Macon, GA." service="Housekeeping" intro="Make room for a calmer day with housekeeping for your home. Dream Clean serves homeowners in Macon and across Middle Georgia." relatedHref="move-in-move-out-cleaning/" relatedLabel="Preparing a property for a move? Explore move-in / move-out cleaning.">
+  <section aria-labelledby="home-needs">
+    <h2 id="home-needs">Start with your home’s needs.</h2>
+    <p>A useful cleaning conversation starts with the rooms you want help with and the details that matter most. Tell us about your home, areas needing attention, and any surfaces that require special care.</p>
+    <p>Our work photos include kitchens and appliances. If you would like help with a stovetop, oven, or refrigerator, mention it when requesting a quote so we can discuss the work involved. Confirm the tasks and exclusions for your visit before arranging the clean.</p>
+  </section>
+  <section aria-labelledby="kitchen-work">
+    <h2 id="kitchen-work">A closer look at our work.</h2>
+    <p>These photos from Dream Clean’s Facebook page show the same white electric stovetop before and after cleaning.</p>
+    <div class="work-pair">
+      <figure><Image src={before} alt="Before cleaning: cooking residue around a white electric stovetop’s burners" widths={[400, 700]} sizes="(max-width: 700px) 44vw, 40vw" format="webp" loading="lazy" /><figcaption>Before stovetop cleaning</figcaption></figure>
+      <figure><Image src={after} alt="After cleaning: the same white stovetop with clean burners and surface" widths={[400, 700]} sizes="(max-width: 700px) 44vw, 40vw" format="webp" loading="lazy" /><figcaption>After stovetop cleaning</figcaption></figure>
+    </div>
+  </section>
+  <section aria-labelledby="home-quote">
+    <h2 id="home-quote">What to include in your request.</h2>
+    <ul><li>Your location and the type and size of your home.</li><li>The rooms and cleaning priorities you want to discuss.</li><li>Your preferred timing and whether you are seeking one visit or ongoing help.</li><li>Any access arrangements, pets, or special care instructions that could affect the visit.</li></ul>
+    <p>You can send the form below or call (678) 232-8614. The form requests your name and email; a phone number and details about your cleaning needs are optional. Submitting a request starts an inquiry. Discuss pricing and available dates with Dream Clean before making arrangements.</p>
+  </section>
+  <section aria-labelledby="home-prepare">
+    <h2 id="home-prepare">Before your cleaning visit.</h2>
+    <p>Ask which supplies and equipment will be used, especially if you have a product preference or a surface with specific care requirements. Agree on access to the home and highlight any areas to leave untouched. If you request appliance interiors, discuss emptying them and any preparation needed beforehand.</p>
+  </section>
+</ServicePage>

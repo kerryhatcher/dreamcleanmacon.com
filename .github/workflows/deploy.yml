@@ -36,11 +36,7 @@ jobs:
           ASTRO_BASE: /
       - name: Prevent preview indexing
         if: github.event_name == 'pull_request'
-        run: |
-          printf '/*\n  X-Robots-Tag: noindex, nofollow\n' >> dist/_headers
-          # Crawlers must be able to fetch pages to read the noindex header.
-          # Omit production sitemap discovery from preview robots.txt.
-          printf 'User-agent: *\nAllow: /\n' > dist/robots.txt
+        run: node scripts/prepare-preview.mjs
       - name: Upload site artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
@@ -96,3 +92,16 @@ jobs:
           ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
         run: |
           printf 'Deployment: %s\n\nBranch URL: %s\n' "$DEPLOYMENT_URL" "$ALIAS_URL" >> "$GITHUB_STEP_SUMMARY"
+      - name: Verify live SEO responses
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+          DEPLOYMENT_MODE: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+        run: |
+          # Allow a short propagation window; fail CI if the deployed responses disagree.
+          for attempt in 1 2 3; do
+            if node scripts/verify-deployment.mjs "$DEPLOYMENT_URL" "$DEPLOYMENT_MODE"; then
+              exit 0
+            fi
+            sleep 5
+          done
+          exit 1
