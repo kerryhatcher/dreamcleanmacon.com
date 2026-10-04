@@ -23,5 +23,5 @@ SEO and deployment conventions:
 - Keep page titles, descriptions, canonical URLs, and structured data consistent with visible content. Structured data must contain only confirmed facts; do not invent addresses, hours, pricing, guarantees, or review ratings.
 - Use Organization and Service markup with the available facts. Do not imply LocalBusiness rich-result eligibility without the required verified business details.
 - AGENTS.md is repository guidance, not a public marketing asset. AI text files are optional and are not a substitute for useful HTML content.
-- The quote form remains an inactive mockup. Use phone links for active quote CTAs until form processing is explicitly requested.
+- The quote form submits to https://formspree.io/f/xeaoybzw using a standard HTML POST. Keep phone links available as an alternative quote CTA.
 - Verify changes with npm run check, npm run build, and actionlint. Check generated robots/sitemap/JSON-LD and real preview HTTP status and indexing headers before merging SEO changes.

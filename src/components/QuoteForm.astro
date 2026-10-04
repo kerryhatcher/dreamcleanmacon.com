@@ -5,21 +5,22 @@ import Arrow from './Arrow.astro';
   <div class="quote-heading">
     <h2 id="quote-title">Let’s get<br />in touch.</h2>
     <p>Leave your contact details so we can talk about your cleaning needs.</p>
-    <p id="form-preview" class="form-preview">Online requests are coming soon. This form is a preview; your information won’t be sent.</p>
+    <p id="form-note" class="form-note">Name and email are required so we can follow up with you. After sending your request, you’ll see a confirmation page.</p>
     <a href="tel:+16782328614" class="text-link">Call for a quote <Arrow /></a>
     <a class="quote-phone" href="tel:+16782328614">(678) 232-8614</a>
   </div>
-  <form aria-label="Cleaning quote contact form preview" aria-describedby="form-preview">
+  <form action="https://formspree.io/f/xeaoybzw" method="POST" aria-label="Cleaning quote contact form" aria-describedby="form-note">
     <fieldset>
       <legend>Your contact details</legend>
       <div class="form-grid">
-        <div class="field full"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" /></div>
-        <div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
-        <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" /></div>
+        <div class="field full"><label for="name">Your name (required)</label><input id="name" name="name" type="text" autocomplete="name" required /></div>
+        <div class="field"><label for="phone">Phone number (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
+        <div class="field"><label for="email">Email address (required)</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
+        <div class="field full"><label for="message">Tell us about your cleaning needs (optional)</label><textarea id="message" name="message" rows="4" placeholder="Your location, type of cleaning, and preferred timing"></textarea></div>
       </div>
     </fieldset>
     <div class="form-close">
-      <button class="button" type="submit" disabled aria-describedby="form-preview">Request a quote <Arrow diagonal /></button>
+      <button class="button" type="submit">Request a quote <Arrow diagonal /></button>
       <p>Prefer to talk? <a href="tel:+16782328614">Call (678) 232-8614.</a></p>
     </div>
   </form>
