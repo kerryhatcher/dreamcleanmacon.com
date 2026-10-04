@@ -1,7 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "dream-clean-macon",
-  "account_id": "e33f99b627bf3afdbc0311ed464a1e42",
   "pages_build_output_dir": "./dist",
   "compatibility_date": "2026-10-04"
 }

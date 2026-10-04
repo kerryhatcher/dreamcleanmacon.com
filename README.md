@@ -30,7 +30,7 @@ All builds use the production canonical URL. Preview builds add `X-Robots-Tag: n
 
 ### One-time credential setup
 
-In [repository Actions secrets](https://github.com/kerryhatcher/dreamcleanmacon.com/settings/secrets/actions), add `CLOUDFLARE_API_TOKEN`. Create a custom Cloudflare API token with **Account → Cloudflare Pages → Edit**, scoped to the account above. No DNS permission is needed for the CI token. The account ID is public configuration, already stored in the workflow and Wrangler config.
+In [repository Actions secrets](https://github.com/kerryhatcher/dreamcleanmacon.com/settings/secrets/actions), add `CLOUDFLARE_API_TOKEN`. Create a custom Cloudflare API token with **Account → Cloudflare Pages → Edit**, scoped to the account above. No DNS permission is needed for the CI token. The account ID is public configuration, already stored in the workflow. Pages does not accept `account_id` in its Wrangler config.
 
 The Pages project must have `main` as its production branch. It has been created as a Direct Upload project; do not connect it to Cloudflare's Git build integration. The workflow replaces the previous GitHub Pages deployment, so GitHub Pages is no longer the deployment target.
 
@@ -53,9 +53,9 @@ With a suitably scoped Cloudflare token in your environment (or `npx wrangler lo
 ```sh
 npm run check
 npm run build
-npx wrangler pages deploy dist --branch main
+CLOUDFLARE_ACCOUNT_ID=e33f99b627bf3afdbc0311ed464a1e42 npx wrangler pages deploy dist --branch main
 # A separate preview, without changing production:
-npx wrangler pages deploy dist --branch local-preview
+CLOUDFLARE_ACCOUNT_ID=e33f99b627bf3afdbc0311ed464a1e42 npx wrangler pages deploy dist --branch local-preview
 ```
 
 References: [Cloudflare CI deployment guide](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/), [custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/), and [Wrangler Action](https://github.com/cloudflare/wrangler-action).
