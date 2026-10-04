@@ -33,4 +33,12 @@ const xml = await sitemap.text();
 for (const path of ['/', '/housekeeping/', '/move-in-move-out-cleaning/']) assert(xml.includes(`<loc>${canonicalOrigin}${path}</loc>`));
 assert(!xml.includes('/404'), '404 must be excluded from sitemap');
 assert.equal((await request('/seo-verification-missing-page')).status, 404, 'Missing URLs must return 404');
+if (mode === 'production') {
+  const path = '/housekeeping/?source=seo-verification';
+  for (const host of ['https://dreamcleanmacon.com', 'https://dream-clean-macon.pages.dev']) {
+    const response = await fetch(`${host}${path}`, { redirect: 'manual', signal: AbortSignal.timeout(20000) });
+    assert.equal(response.status, 301, `${host}: expected permanent redirect`);
+    assert.equal(response.headers.get('location'), `${canonicalOrigin}${path}`, `${host}: redirect must preserve path and query`);
+  }
+}
 console.log(`Verified ${mode} deployment: ${origin}`);

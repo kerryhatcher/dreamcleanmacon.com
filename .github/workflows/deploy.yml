@@ -109,12 +109,12 @@ jobs:
           printf 'Deployment: %s\n\nBranch URL: %s\n' "$DEPLOYMENT_URL" "$ALIAS_URL" >> "$GITHUB_STEP_SUMMARY"
       - name: Verify live SEO responses
         env:
-          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+          VERIFICATION_URL: ${{ (github.event_name == 'pull_request' || inputs.preview_branch != '') && steps.deploy.outputs.deployment-url || 'https://www.dreamcleanmacon.com' }}
           DEPLOYMENT_MODE: ${{ (github.event_name == 'pull_request' || inputs.preview_branch != '') && 'preview' || 'production' }}
         run: |
           # Allow a short propagation window; fail CI if the deployed responses disagree.
-          for attempt in 1 2 3; do
-            if node scripts/verify-deployment.mjs "$DEPLOYMENT_URL" "$DEPLOYMENT_MODE"; then
+          for _ in 1 2 3; do
+            if node scripts/verify-deployment.mjs "$VERIFICATION_URL" "$DEPLOYMENT_MODE"; then
               exit 0
             fi
             sleep 5

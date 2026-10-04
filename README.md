@@ -75,7 +75,7 @@ The quote form uses a standard HTML POST to `https://formspree.io/f/xeaoybzw`. N
 - Structured data identifies the business and services; it does not promise rankings or LocalBusiness rich results. `AGENTS.md` records maintenance rules and is not copied to the public build.
 - Dedicated `/housekeeping/` and `/move-in-move-out-cleaning/` pages explain the confirmed services, quote preparation, and property access. Shared business facts live in `src/data/business.ts`. The verified Google Business listing is linked alongside Facebook. Search Console verification remains follow-up work. Submit `https://www.dreamcleanmacon.com/sitemap-index.xml` in Search Console after merging.
 
-CI runs `node scripts/verify-deployment.mjs <deployment-url> <preview|production>` after deployment and fails on incorrect page status, indexing headers, robots rules, canonical metadata, JSON-LD parsing, or sitemap content. Run the same command manually to audit a deployment.
+CI runs `node scripts/verify-deployment.mjs <origin> <preview|production>` after deployment and fails on incorrect page status, indexing headers, robots rules, canonical metadata, JSON-LD parsing, or sitemap content. Production verification uses the canonical www origin and checks the apex and production Pages redirects; preview verification uses the deployment URL. Run the same command manually to audit a deployment.
 
 Before merging, run `npm run check`, `npm run build`, and `actionlint`. Verify that the preview homepage is HTTP 200 with `X-Robots-Tag: noindex, nofollow`, a missing URL is HTTP 404, `/robots.txt` is text and allows crawling, and `/sitemap-index.xml` is XML linking to canonical production URLs. The preview sitemap still uses production URLs; its robots file omits sitemap discovery.
 
