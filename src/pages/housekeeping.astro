@@ -1,8 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import ServicePage from '../layouts/ServicePage.astro';
+import WorkComparisons from '../components/WorkComparisons.astro';
 import before from '../../public/images/stovetop-before.jpg';
 import after from '../../public/images/stovetop-after.jpg';
+import kitchenBefore from '../../public/images/kitchen-before.jpg';
+import kitchenAfter from '../../public/images/kitchen-after.jpg';
+import bathroom from '../../public/images/bathroom-before-after.jpg';
+import toilet from '../../public/images/toilet-before-after.jpg';
 ---
 <ServicePage title="Housekeeping in Macon, GA | Dream Clean" description="Housekeeping for homes in Macon and Middle Georgia. See Dream Clean’s work, prepare your cleaning priorities, and request a quote online or by phone." heading="Housekeeping in Macon, GA." service="Housekeeping" intro="Make room for a calmer day with housekeeping for your home. Dream Clean serves homeowners in Macon and across Middle Georgia." relatedHref="move-in-move-out-cleaning/" relatedLabel="Preparing a property for a move? Explore move-in / move-out cleaning.">
   <section aria-labelledby="home-needs">
@@ -12,11 +17,21 @@ import after from '../../public/images/stovetop-after.jpg';
   </section>
   <section aria-labelledby="kitchen-work">
     <h2 id="kitchen-work">A closer look at our work.</h2>
-    <p>These photos from Dream Clean’s Facebook page show the same white electric stovetop before and after cleaning.</p>
+    <p>See Dream Clean’s work in kitchens and bathrooms, with before-and-after photos supplied from our Facebook page. Each comparison shows the same space or fixture. Discuss the areas you want help with when requesting your quote.</p>
+    <h3 class="comparison-title">A clearer stovetop.</h3>
     <div class="work-pair">
       <figure><Image src={before} alt="Before cleaning: cooking residue around a white electric stovetop’s burners" widths={[400, 700]} sizes="(max-width: 700px) 44vw, 40vw" format="webp" loading="lazy" /><figcaption>Before stovetop cleaning</figcaption></figure>
       <figure><Image src={after} alt="After cleaning: the same white stovetop with clean burners and surface" widths={[400, 700]} sizes="(max-width: 700px) 44vw, 40vw" format="webp" loading="lazy" /><figcaption>After stovetop cleaning</figcaption></figure>
     </div>
+    <h3 class="comparison-title">A fresh start in the kitchen.</h3>
+    <div class="work-pair kitchen-comparison">
+      <figure><Image src={kitchenBefore} alt="Before: dishes and household items crowd the kitchen sink and counters" widths={[400, 700, 1000]} sizes="(max-width: 700px) 90vw, 40vw" format="webp" loading="lazy" /><figcaption>Before kitchen cleaning</figcaption></figure>
+      <figure><Image src={kitchenAfter} alt="After: the same kitchen with a cleared sink and more open counter space" widths={[400, 700, 1000]} sizes="(max-width: 700px) 90vw, 40vw" format="webp" loading="lazy" /><figcaption>After kitchen cleaning</figcaption></figure>
+    </div>
+    <WorkComparisons photos={[
+      { src: bathroom, alt: 'Before-and-after comparison of a bathroom: the sink, vanity, and surrounding area cleaned and tidied', caption: 'Bathroom sink and vanity' },
+      { src: toilet, alt: 'Before-and-after comparison showing residue removed from a toilet bowl and exterior', caption: 'Toilet bowl and exterior' },
+    ]} />
   </section>
   <section aria-labelledby="home-quote">
     <h2 id="home-quote">What to include in your request.</h2>
@@ -28,3 +43,8 @@ import after from '../../public/images/stovetop-after.jpg';
     <p>Ask which supplies and equipment will be used, especially if you have a product preference or a surface with specific care requirements. Agree on access to the home and highlight any areas to leave untouched. If you request appliance interiors, discuss emptying them and any preparation needed beforehand.</p>
   </section>
 </ServicePage>
+<style>
+  .comparison-title { margin-top: 36px; font-size: 28px; }
+  .kitchen-comparison img { height: auto; }
+  @media (max-width: 700px) { .kitchen-comparison { grid-template-columns: 1fr; } }
+</style>

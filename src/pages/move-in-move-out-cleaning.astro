@@ -1,8 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import ServicePage from '../layouts/ServicePage.astro';
+import WorkComparisons from '../components/WorkComparisons.astro';
 import before from '../../public/images/oven-before.jpg';
 import after from '../../public/images/oven-after.jpg';
+import shower from '../../public/images/shower-door-before-after.jpg';
+import bathtub from '../../public/images/bathtub-before-after.jpg';
+import refrigerator from '../../public/images/refrigerator-before-after.jpg';
 ---
 <ServicePage title="Move-In & Move-Out Cleaning in Macon, GA | Dream Clean" description="Move-in and move-out cleaning in Macon and Middle Georgia for homes, apartments, and Airbnb properties. Discuss your property and request a Dream Clean quote." heading="Move-in / move-out cleaning in Macon, GA." service="Move-in / move-out cleaning" intro="Preparing a home for your arrival, leaving an apartment, or getting a property ready for its next occupants? Talk with Dream Clean about your move-in / move-out cleaning needs." relatedHref="housekeeping/" relatedLabel="Looking for help in the home you live in? Explore housekeeping.">
   <section aria-labelledby="property-needs">
@@ -12,11 +16,16 @@ import after from '../../public/images/oven-after.jpg';
   </section>
   <section aria-labelledby="oven-work">
     <h2 id="oven-work">Details worth discussing.</h2>
-    <p>Kitchens and appliance interiors may need particular attention when occupants change. These photos from Dream Clean’s Facebook page show an oven before and after cleaning. Mention appliance work in your inquiry so its scope and preparation can be discussed.</p>
+    <p>Kitchens, bathrooms, and appliance interiors may need particular attention when occupants change. These before-and-after examples of Dream Clean’s work come from our Facebook page. Mention the areas and appliances needing attention in your inquiry so we can discuss the scope and preparation.</p>
     <div class="work-pair">
       <figure><Image src={before} alt="Before cleaning: baked-on residue inside an oven and on its glass door" widths={[400, 700, 1000]} sizes="(max-width: 700px) 44vw, 40vw" format="webp" loading="lazy" /><figcaption>Before oven cleaning</figcaption></figure>
       <figure><Image src={after} alt="After cleaning: the same oven interior and glass door cleared of baked-on residue" widths={[400, 700, 1000]} sizes="(max-width: 700px) 44vw, 40vw" format="webp" loading="lazy" /><figcaption>After oven cleaning</figcaption></figure>
     </div>
+    <WorkComparisons photos={[
+      { src: shower, alt: 'Before-and-after comparison of a textured glass shower door with surface buildup removed', caption: 'Shower door' },
+      { src: bathtub, alt: 'Before-and-after comparison of the same bathtub with residue removed from the tub and surrounding surfaces', caption: 'Bathtub and surround' },
+      { src: refrigerator, alt: 'Before-and-after comparison showing refrigerator shelves and drawers cleaned of residue', caption: 'Refrigerator interior' },
+    ]} />
   </section>
   <section aria-labelledby="property-quote">
     <h2 id="property-quote">Plan your property inquiry.</h2>
