@@ -14,19 +14,51 @@ npm run build
 npm run preview
 ```
 
-Publish the generated `dist/` directory to a static host. No server adapter or database is required. Local builds default to the root of `dreamcleanmacon.com`. Set `ASTRO_SITE` and `ASTRO_BASE` to build for another domain or subdirectory.
+Publish the generated `dist/` directory to a static host. No server adapter or database is required. Local builds default to `https://www.dreamcleanmacon.com/`. Set `ASTRO_SITE` and `ASTRO_BASE` to build for another domain or subdirectory.
 
-## GitHub Pages
+## Cloudflare Pages and GitHub Actions
 
-In the repository's **Settings → Pages → Build and deployment**, choose **GitHub Actions** as the source. The workflow in `.github/workflows/deploy.yml` installs the locked dependencies, checks Astro, builds the site (including image provenance), and deploys `dist/` on every push to `main`. It can also be run manually from **Actions → Deploy to GitHub Pages → Run workflow**. No deployment secret is required.
+The site uses the **Direct Upload** Cloudflare Pages project `dream-clean-macon` in the Julia Callahan account (`e33f99b627bf3afdbc0311ed464a1e42`). GitHub Actions builds the static site and uploads `dist/`; Cloudflare does not run a second build. Project configuration is in `wrangler.jsonc`.
 
-The workflow obtains the origin and base path from GitHub Pages, so assets and the canonical URL work at `https://kerryhatcher.github.io/dreamcleanmacon.com/` or a custom domain configured in Pages settings. To use `dreamcleanmacon.com`, configure it in those settings and set the domain's DNS records as described in [GitHub's custom domain guide](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site). DNS changes are separate from this workflow.
+- Pushes to `main` deploy production at **https://www.dreamcleanmacon.com** (also available at https://dream-clean-macon.pages.dev).
+- Pull requests targeting `main` from this repository build and deploy to a separate `pr-<number>` branch. Their stable preview URL is `https://pr-<number>.dream-clean-macon.pages.dev`. New commits update the same preview URL.
+- Each deployment is linked from its GitHub environment and the workflow's job summary. Each upload also has an immutable deployment URL.
+- Fork pull requests run checks and builds without deploying, because GitHub does not expose repository secrets to them. The workflow uses `pull_request`, never `pull_request_target`.
+- Manual runs deploy only when run against `main`.
 
-To reproduce the project URL build locally:
+All builds use the production canonical URL. Preview builds add `X-Robots-Tag: noindex, nofollow` and a disallow-all `robots.txt`. Preview URLs are public and persist after a PR closes; old preview deployments can be removed from the Cloudflare dashboard. They do not affect production.
+
+### One-time credential setup
+
+In [repository Actions secrets](https://github.com/kerryhatcher/dreamcleanmacon.com/settings/secrets/actions), add `CLOUDFLARE_API_TOKEN`. Create a custom Cloudflare API token with **Account → Cloudflare Pages → Edit**, scoped to the account above. No DNS permission is needed for the CI token. The account ID is public configuration, already stored in the workflow. Pages does not accept `account_id` in its Wrangler config.
+
+The Pages project must have `main` as its production branch. It has been created as a Direct Upload project; do not connect it to Cloudflare's Git build integration. The workflow replaces the previous GitHub Pages deployment, so GitHub Pages is no longer the deployment target.
+
+### Custom domain
+
+Associate `www.dreamcleanmacon.com` with the Pages project under **Workers & Pages → dream-clean-macon → Custom domains**. Its proxied DNS record is:
+
+| Type | Name | Target |
+| --- | --- | --- |
+| CNAME | `www` | `dream-clean-macon.pages.dev` |
+
+Domain association and DNS are both required. Cloudflare validates the hostname and provisions HTTPS; wait for the custom domain status to become **Active**. The apex `dreamcleanmacon.com` is separate; this setup serves the requested `www` hostname.
+
+After adding the secret and merging the workflow, use **Actions → Deploy to Cloudflare Pages → Run workflow** on `main` for the initial production deployment, or push a commit to `main`. Open a PR to check its preview environment.
+
+### Local deployment
+
+With a suitably scoped Cloudflare token in your environment (or `npx wrangler login`):
 
 ```sh
-ASTRO_SITE=https://kerryhatcher.github.io ASTRO_BASE=/dreamcleanmacon.com npm run build
+npm run check
+npm run build
+CLOUDFLARE_ACCOUNT_ID=e33f99b627bf3afdbc0311ed464a1e42 npx wrangler pages deploy dist --branch main
+# A separate preview, without changing production:
+CLOUDFLARE_ACCOUNT_ID=e33f99b627bf3afdbc0311ed464a1e42 npx wrangler pages deploy dist --branch local-preview
 ```
+
+References: [Cloudflare CI deployment guide](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/), [custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/), and [Wrangler Action](https://github.com/cloudflare/wrangler-action).
 
 ## Quote form
 
