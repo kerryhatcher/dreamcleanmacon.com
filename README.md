@@ -26,7 +26,7 @@ The site uses the **Direct Upload** Cloudflare Pages project `dream-clean-macon`
 - Fork pull requests run checks and builds without deploying, because GitHub does not expose repository secrets to them. The workflow uses `pull_request`, never `pull_request_target`.
 - Manual runs deploy only when run against `main`.
 
-All builds use the production canonical URL. Preview builds add `X-Robots-Tag: noindex, nofollow` and a disallow-all `robots.txt`. Preview URLs are public and persist after a PR closes; old preview deployments can be removed from the Cloudflare dashboard. They do not affect production.
+All builds use the production canonical URL. Preview builds add `X-Robots-Tag: noindex, nofollow` and an allow-all `robots.txt` without a sitemap directive. Crawlers must be able to fetch a page to read its `noindex` header. Preview URLs are public and persist after a PR closes; old preview deployments can be removed from the Cloudflare dashboard. They do not affect production.
 
 ### One-time credential setup
 
@@ -42,7 +42,7 @@ Associate `www.dreamcleanmacon.com` with the Pages project under **Workers & Pag
 | --- | --- | --- |
 | CNAME | `www` | `dream-clean-macon.pages.dev` |
 
-Domain association and DNS are both required. Cloudflare validates the hostname and provisions HTTPS; wait for the custom domain status to become **Active**. The apex `dreamcleanmacon.com` is separate; this setup serves the requested `www` hostname.
+Domain association and DNS are both required. Cloudflare validates the hostname and provisions HTTPS; wait for the custom domain status to become **Active**. The apex `dreamcleanmacon.com` has a proxied redirect-only A record (`192.0.2.1`) and a Cloudflare Single Redirect to HTTPS `www`, preserving the path and query string. This rule is managed in Cloudflare, separately from the static build.
 
 After adding the secret and merging the workflow, use **Actions → Deploy to Cloudflare Pages → Run workflow** on `main` for the initial production deployment, or push a commit to `main`. Open a PR to check its preview environment.
 
@@ -62,7 +62,17 @@ References: [Cloudflare CI deployment guide](https://developers.cloudflare.com/p
 
 ## Quote form
 
-The form is intentionally an inactive HTML mockup, per the client's instruction. The homepage asks only for name, phone number, and email address. The detailed pre-clean questionnaire in `info/intake_form.jpg` is retained as source material for a later intake process. Its submit button is disabled; there is no action URL, submit handler, storage, or submission request. Phone contact remains available. Service links lead to the same inline contact form.
+The form is intentionally an inactive HTML mockup, per the client's instruction. The homepage asks only for name, phone number, and email address. The detailed pre-clean questionnaire in `info/intake_form.jpg` is retained as source material for a later intake process. Its submit button is disabled; there is no action URL, submit handler, storage, or submission request. Active quote CTAs and service inquiry links use the phone number.
+
+## SEO foundation
+
+- `public/robots.txt` permits public content and advertises the production sitemap. `@astrojs/sitemap` generates `dist/sitemap-index.xml` and its child sitemap with canonical URLs, excluding the 404 page.
+- `src/pages/404.astro` builds a top-level `dist/404.html`. Cloudflare Pages uses it for missing URLs with HTTP 404, avoiding its automatic homepage fallback. The error page is marked `noindex` and offers a homepage link and phone contact.
+- The homepage supplies a descriptive title, description, canonical URL, Open Graph metadata, and Organization/Service JSON-LD using the visible business facts. It does not claim a public street address, business hours, pricing, or aggregate review rating.
+- Structured data identifies the business and services; it does not promise rankings or LocalBusiness rich results. `AGENTS.md` records maintenance rules and is not copied to the public build.
+- Dedicated service pages, Google Business Profile work, and Search Console verification remain follow-up work. Submit `https://www.dreamcleanmacon.com/sitemap-index.xml` in Search Console after merging.
+
+Before merging, run `npm run check`, `npm run build`, and `actionlint`. Verify that the preview homepage is HTTP 200 with `X-Robots-Tag: noindex, nofollow`, a missing URL is HTTP 404, `/robots.txt` is text and allows crawling, and `/sitemap-index.xml` is XML linking to canonical production URLs. The preview sitemap still uses production URLs; its robots file omits sitemap discovery.
 
 ## Photos and content
 

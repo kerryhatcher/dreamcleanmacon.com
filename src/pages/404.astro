@@ -1,0 +1,35 @@
+---
+import '@fontsource/playfair-display/latin-400.css';
+import '../styles/global.css';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#f7f5ef" />
+    <title>Page not found | Dream Clean</title>
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+  </head>
+  <body>
+    <main class="not-found">
+      <a class="home-brand" href={base}>Dream Clean.</a>
+      <p class="location">Page not found · 404</p>
+      <h1>Let’s get you home.</h1>
+      <p>This page couldn’t be found. Visit our homepage for housekeeping and move-in / move-out cleaning in Macon and Middle Georgia.</p>
+      <a class="button" href={base}>Back to the homepage</a>
+      <a class="text-link" href="tel:+16782328614">Call (678) 232-8614</a>
+    </main>
+  </body>
+</html>
+<style>
+  .not-found { max-width: 860px; margin: 0 auto; padding: 64px 24px; }
+  .home-brand { display: inline-block; margin-bottom: 64px; font-size: 28px; text-decoration: none; }
+  .location { font-size: 12px; margin-bottom: 20px; }
+  h1 { font-size: clamp(40px, 7vw, 72px); line-height: 1.1; }
+  h1 + p { font-family: var(--sans); line-height: 1.7; margin: 28px 0; max-width: 60ch; }
+  .button { width: fit-content; padding: 18px 24px; font-size: 20px; }
+  .text-link { margin-top: 16px; }
+</style>
