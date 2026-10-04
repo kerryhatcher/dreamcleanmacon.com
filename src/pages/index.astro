@@ -11,17 +11,12 @@ import team from '../../public/images/team.jpg';
 import Arrow from '../components/Arrow.astro';
 import QuoteForm from '../components/QuoteForm.astro';
 import '../styles/global.css';
-const facebook = 'https://www.facebook.com/p/Dream-Clean-Housekeeping-Company-LLC-61550656630177';
-const counties = ['Bibb', 'Houston', 'Crawford', 'Peach', 'Baldwin', 'Jones', 'Putnam', 'Monroe', 'Wilkinson'];
+import { facebook, googleBusiness, counties, areaServed } from '../data/business';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const canonical = new URL(base, Astro.site);
 const title = 'House Cleaning in Macon, GA | Dream Clean';
 const description = 'Dream Clean offers housekeeping and move-in / move-out cleaning in Macon and Middle Georgia for homes, apartments, and Airbnb properties. Call for a quote.';
 const organizationId = `${canonical.href}#organization`;
-const areaServed = [
-  { '@type': 'City', name: 'Macon, Georgia' },
-  ...counties.map(county => ({ '@type': 'AdministrativeArea', name: `${county} County, Georgia` })),
-];
 // Only facts supported by the visible page and supplied business sources.
 const structuredData = {
   '@context': 'https://schema.org',
@@ -34,7 +29,7 @@ const structuredData = {
       logo: new URL(`${base}images/logo.png`, canonical).href,
       telephone: '+1-678-232-8614',
       description,
-      sameAs: [facebook],
+      sameAs: [facebook, googleBusiness],
       areaServed,
     },
     {
@@ -42,7 +37,7 @@ const structuredData = {
       '@id': `${canonical.href}#housekeeping-service`,
       name: 'Housekeeping',
       serviceType: 'House cleaning',
-      url: `${canonical.href}#housekeeping`,
+      url: new URL(`${base}housekeeping/`, canonical).href,
       provider: { '@id': organizationId },
       areaServed,
     },
@@ -51,7 +46,7 @@ const structuredData = {
       '@id': `${canonical.href}#property-cleaning-service`,
       name: 'Move-in / move-out cleaning',
       serviceType: 'Move-in / move-out cleaning for homes, apartments, and Airbnb properties',
-      url: `${canonical.href}#property-cleaning`,
+      url: new URL(`${base}move-in-move-out-cleaning/`, canonical).href,
       provider: { '@id': organizationId },
       areaServed,
     },
@@ -118,12 +113,16 @@ const structuredData = {
           <article id="housekeeping">
             <h3>Housekeeping<br />for your home.</h3>
             <p>Housekeeping that makes room for a calmer day. Tell us about your home, the rooms you’d like cleaned, and the details that matter to you.</p>
+            <p>Share your cleaning priorities, preferred timing, and any special care instructions. Discuss the tasks, supplies, and access arrangements for your visit when requesting a quote.</p>
+            <a class="text-link" href={`${base}housekeeping/`}>Explore housekeeping in Macon <Arrow /></a>
             <p class="service-detail">Housekeeping · Homeowners</p>
             <a class="text-link" href="tel:+16782328614">Call about your home <Arrow /></a>
           </article>
           <article id="property-cleaning">
             <h3>Move-in / move-out<br />cleaning.</h3>
             <p>Moving in, moving out, or preparing for the next occupants? Ask about cleaning for apartment complexes, Airbnb properties, and other move-in / move-out needs.</p>
+            <p>Tell us the property’s size and condition, whether it will be empty or furnished, and your move or handover date. Mention appliance interiors or a property manager’s checklist so we can discuss the scope.</p>
+            <a class="text-link" href={`${base}move-in-move-out-cleaning/`}>Explore move-in / move-out cleaning <Arrow /></a>
             <p class="service-detail">Move-in / move-out · Property clients</p>
             <a class="text-link" href="tel:+16782328614">Call about your property <Arrow /></a>
           </article>
@@ -172,7 +171,7 @@ const structuredData = {
     </main>
     <footer class="site-footer section-wrap">
       <div><p class="footer-name">Dream Clean.</p><p>Housekeeping Company, LLC<br />Macon &amp; Middle Georgia</p></div>
-      <div class="footer-contact"><a href="tel:+16782328614">(678) 232-8614</a><a href={facebook}>Find us on Facebook <Arrow /></a></div>
+      <div class="footer-contact"><a href="tel:+16782328614">(678) 232-8614</a><a href={facebook}>Find us on Facebook <Arrow /></a><a href={googleBusiness}>Find us on Google <Arrow /></a></div>
       <p class="footer-close">A clean home. A calmer day.</p>
     </footer>
   </body>

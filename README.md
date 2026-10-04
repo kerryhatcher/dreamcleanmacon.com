@@ -24,9 +24,11 @@ The site uses the **Direct Upload** Cloudflare Pages project `dream-clean-macon`
 - Pull requests targeting `main` from this repository build and deploy to a separate `pr-<number>` branch. Their stable preview URL is `https://pr-<number>.dream-clean-macon.pages.dev`. New commits update the same preview URL.
 - Each deployment is linked from its GitHub environment and the workflow's job summary. Each upload also has an immutable deployment URL.
 - Fork pull requests run checks and builds without deploying, because GitHub does not expose repository secrets to them. The workflow uses `pull_request`, never `pull_request_target`.
-- Manual runs deploy only when run against `main`.
+- Manual production runs deploy only from `main`. To refresh a historical PR preview, run the workflow with `preview_branch=pr-N` from the desired source branch; the input is validated and this always prepares a noindex preview artifact.
 
-All builds use the production canonical URL. Preview builds add `X-Robots-Tag: noindex, nofollow` and an allow-all `robots.txt` without a sitemap directive. Crawlers must be able to fetch a page to read its `noindex` header. Preview URLs are public and persist after a PR closes; old preview deployments can be removed from the Cloudflare dashboard. They do not affect production.
+The production `dream-clean-macon.pages.dev` hostname is redirected to www through the Cloudflare account Bulk Redirect list `dream_clean_production_redirect`. It preserves paths and query strings with subdomain matching disabled, so previews remain available. This rule is managed outside the static build; domain-level redirects are unsupported in Pages `_redirects`.
+
+All builds use the production canonical URL. Preview builds run `node scripts/prepare-preview.mjs` to add `X-Robots-Tag: noindex, nofollow` and an allow-all `robots.txt` without a sitemap directive. Crawlers must be able to fetch a page to read its `noindex` header. Preview URLs are public and persist after a PR closes; old preview deployments can be removed from the Cloudflare dashboard. They do not affect production. Old previews retain the artifact deployed at that time; the PR #1 artifact contained a crawler block from the original workflow. Refresh the branch preview to apply current indexing rules: `GH_HOST=github.com gh workflow run deploy.yml --ref <source-branch> -f preview_branch=pr-1`.
 
 ### One-time credential setup
 
@@ -54,7 +56,8 @@ With a suitably scoped Cloudflare token in your environment (or `npx wrangler lo
 npm run check
 npm run build
 CLOUDFLARE_ACCOUNT_ID=e33f99b627bf3afdbc0311ed464a1e42 npx wrangler pages deploy dist --branch main
-# A separate preview, without changing production:
+# Prepare a separate preview, without changing production:
+node scripts/prepare-preview.mjs
 CLOUDFLARE_ACCOUNT_ID=e33f99b627bf3afdbc0311ed464a1e42 npx wrangler pages deploy dist --branch local-preview
 ```
 
@@ -62,7 +65,7 @@ References: [Cloudflare CI deployment guide](https://developers.cloudflare.com/p
 
 ## Quote form
 
-The form is intentionally an inactive HTML mockup, per the client's instruction. The homepage asks only for name, phone number, and email address. The detailed pre-clean questionnaire in `info/intake_form.jpg` is retained as source material for a later intake process. Its submit button is disabled; there is no action URL, submit handler, storage, or submission request. Active quote CTAs and service inquiry links use the phone number.
+The quote form uses a standard HTML POST to `https://formspree.io/f/xeaoybzw`. Name and email are required; phone and a cleaning-needs message are optional. Formspree supplies the confirmation page. Phone links remain available throughout the site. A request is an inquiry, not a confirmed booking. The detailed questionnaire in `info/intake_form.jpg` remains reference material for a later intake process.
 
 ## SEO foundation
 
@@ -70,7 +73,9 @@ The form is intentionally an inactive HTML mockup, per the client's instruction.
 - `src/pages/404.astro` builds a top-level `dist/404.html`. Cloudflare Pages uses it for missing URLs with HTTP 404, avoiding its automatic homepage fallback. The error page is marked `noindex` and offers a homepage link and phone contact.
 - The homepage supplies a descriptive title, description, canonical URL, Open Graph metadata, and Organization/Service JSON-LD using the visible business facts. It does not claim a public street address, business hours, pricing, or aggregate review rating.
 - Structured data identifies the business and services; it does not promise rankings or LocalBusiness rich results. `AGENTS.md` records maintenance rules and is not copied to the public build.
-- Dedicated service pages, Google Business Profile work, and Search Console verification remain follow-up work. Submit `https://www.dreamcleanmacon.com/sitemap-index.xml` in Search Console after merging.
+- Dedicated `/housekeeping/` and `/move-in-move-out-cleaning/` pages explain the confirmed services, quote preparation, and property access. Shared business facts live in `src/data/business.ts`. The verified Google Business listing is linked alongside Facebook. Search Console verification remains follow-up work. Submit `https://www.dreamcleanmacon.com/sitemap-index.xml` in Search Console after merging.
+
+CI runs `node scripts/verify-deployment.mjs <origin> <preview|production>` after deployment and fails on incorrect page status, indexing headers, robots rules, canonical metadata, JSON-LD parsing, or sitemap content. Production verification uses the canonical www origin and checks the apex and production Pages redirects; preview verification uses the deployment URL. Run the same command manually to audit a deployment.
 
 Before merging, run `npm run check`, `npm run build`, and `actionlint`. Verify that the preview homepage is HTTP 200 with `X-Robots-Tag: noindex, nofollow`, a missing URL is HTTP 404, `/robots.txt` is text and allows crawling, and `/sitemap-index.xml` is XML linking to canonical production URLs. The preview sitemap still uses production URLs; its robots file omits sitemap discovery.
 
