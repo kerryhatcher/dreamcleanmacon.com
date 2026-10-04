@@ -26,26 +26,16 @@ Selection record: seed `650d8dae`, kind `assigned`, selected in chat with the at
 ## Sequence and interactions
 
 1. Introduction, service purpose, quote link, and telephone link.
-2. Two service sections: housekeeping for homeowners; move-in/move-out cleaning for commercial property clients. Both lead to the same quote form and may preselect service interest without clearing visitor input.
+2. Two service sections: housekeeping for homeowners; move-in/move-out cleaning for commercial property clients. Both lead to the same quote form.
 3. Real work photographs and faithfully attributed review excerpts selected from supplied assets. Keep generated concept photography separate from evidence of actual work. Verify any award claim and current business details before publication.
 4. Middle Georgia service-area information and a brief factual business introduction.
-5. Quote questionnaire and repeat phone action; footer with business identity and relevant contact links.
+5. Basic contact form and repeat phone action; footer with business identity and relevant contact links.
 
 Keep navigation and quote links usable without animation. On mobile, stack headline, explanation, quote action, photograph, and service destinations in reading order. Reframe the photograph without horizontal page scrolling. The quote section stays inline and directly addressable, avoiding a modal or forced multistep flow. Motion, if used, should be restrained and respect reduced-motion settings.
 
-## Quote questionnaire
+## Homepage contact form
 
-Preserve all seven questions from the user-designated `info/intake_form.jpg`:
-
-- Property address.
-- Square footage.
-- Bedrooms and bathrooms (separate numeric inputs for clarity).
-- Whether children frequent the property.
-- Whether pets live on the property.
-- Color of the inside of the oven.
-- Whether the property is considered historic.
-
-Confirmed additions: name, phone/email, and service interest so the business can respond and distinguish residential from commercial requests. Use plain labels and optional uncertainty responses where appropriate. Do not silently drop the oven question or impose numeric limits without a business reason. Required fields are undecided.
+Per the user’s latest instruction, ask only for name, phone number, and email address. Keep the detailed questionnaire in `info/intake_form.jpg` as source material for a later intake process.
 
 Build the real HTML form as a nonfunctional mockup, per the user's subsequent instruction. Give the submit button no action, disable it, and label the online form as a preview with calling available. Do not add a submission endpoint, submission handler, storage, delivery states, or a success claim. Entered information is not sent.
 
@@ -61,10 +51,10 @@ THESIS: A property brochure for cleaning, with one panoramic image and a direct 
 
 OWN-WORLD: Cream ground, forest serif typography, blue contact links, thin rules, rectangular controls, existing thought-bubble logo.
 
-STORY: Visitors understand local housekeeping and move-in/move-out cleaning, see real work and customer words, then inspect the questionnaire or call.
+STORY: Visitors understand local housekeeping and move-in/move-out cleaning, see real work and customer words, then fill in their contact details or call.
 
 FIRST VIEWPORT: A shallow logo/navigation header; giant two-line headline left, service explanation and quote action right; panoramic interior below; a narrow caption and numbered service links. Match `mock-ups/0.png` using responsive proportions.
 
-FORM: The Open House, grounded candidate 7, seed `650d8dae`, kind `assigned`, explicitly selected and confirmed in chat. Comp-led reference: `mock-ups/0.png`. Signature interaction: home/property quote links preselect service interest without clearing other answers; the form stays inline. Motion: restrained hover feedback and reduced-motion-aware anchor scrolling.
+FORM: The Open House, grounded candidate 7, seed `650d8dae`, kind `assigned`, explicitly selected and confirmed in chat. Comp-led reference: `mock-ups/0.png`. Signature interaction: home/property quote links lead to the same basic contact form without changing entered answers; the form stays inline. Motion: restrained hover feedback and reduced-motion-aware anchor scrolling.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

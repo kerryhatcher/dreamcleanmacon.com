@@ -39,7 +39,7 @@ Saved Facebook screenshots are available in `info/`. The live Facebook page coul
 - Deliver a static site built with Astro.
 - Address both homeowners and the confirmed commercial move-in/move-out audience.
 - Offer a quote-request form and phone contact. Keep form processing, booking, pricing, service package details, and hosting provider explicitly open until decided.
-- Preserve the seven intake questions from `info/intake_form.jpg`: property address; square footage; bedroom and bathroom counts; whether children frequent the property; whether pets live there; oven-interior color; and historic-property status. Requiredness and any added contact fields remain to be confirmed.
+- The homepage form asks only for basic contact information: name, phone number, and email address, per the user’s latest instruction. Keep the detailed questions from `info/intake_form.jpg` as reference for a later intake process; they do not belong on the homepage.
 - The current form must be a nonfunctional HTML mockup with no submit-button action, as explicitly requested by the user. A future working inquiry form would require a separately selected submission service or endpoint compatible with static hosting.
 - Do not invent service guarantees, insurance or bonding status, prices, availability, staff biographies, or additional service offerings.
 

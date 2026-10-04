@@ -147,7 +147,7 @@ Desktop uses open asymmetric columns: the hero pairs a flexible headline with a 
 
 At 1100px and below, lower section padding becomes 70px and 5%. At 900px and below, hero, section introductions, services, reviews, about, quote, and footer stack. Lower sections use 60px block padding and 22px gutters. Header phone and logo share a row, with all navigation visible on a separate row. Before/after photography remains paired for direct comparison, and the form retains two columns until 370px. At 370px and below, the form becomes one column and hero/section gutters become 18px.
 
-The panoramic image is edge-to-edge, with desktop height 31.38vw and mobile height 270px. Mobile reframes its crop at 42% center. Form fields remain directly in the page; service actions change only service interest and retain other entered answers.
+The panoramic image is edge-to-edge, with desktop height 31.38vw and mobile height 270px. Mobile reframes its crop at 42% center. Form fields remain directly in the page; service actions link to the basic contact form without changing entered answers.
 
 ## Elevation & Depth
 
@@ -195,5 +195,5 @@ Reviews are open columns on Forest Ink, with pale top rules and attribution belo
 
 - **Don't** turn the homepage's pinned location line or numbering into mandatory decoration on every new surface.
 - **Don't** replace the existing rectangular action and open-column treatment with lifted or rounded cards.
-- **Don't** imply that the disabled questionnaire sends information or completes a booking.
+- **Don't** imply that the disabled contact form sends information or completes a booking.
 - **Don't** replace SVG arrows with decorative text glyphs.

@@ -3,38 +3,19 @@ import Arrow from './Arrow.astro';
 ---
 <section id="quote" class="quote-section section-wrap" aria-labelledby="quote-title">
   <div class="quote-heading">
-    <h2 id="quote-title">Tell us about<br />your space.</h2>
-    <p>A few details help us understand your property and prepare for its particular cleaning needs.</p>
+    <h2 id="quote-title">Let’s get<br />in touch.</h2>
+    <p>Leave your contact details so we can talk about your cleaning needs.</p>
     <p id="form-preview" class="form-preview">Online requests are coming soon. This form is a preview; your information won’t be sent.</p>
     <a href="tel:+16782328614" class="text-link">Call for a quote <Arrow /></a>
     <a class="quote-phone" href="tel:+16782328614">(678) 232-8614</a>
   </div>
-  <form aria-label="Cleaning quote questionnaire preview" aria-describedby="form-preview" autocomplete="off">
+  <form aria-label="Cleaning quote contact form preview" aria-describedby="form-preview">
     <fieldset>
       <legend>Your contact details</legend>
       <div class="form-grid">
         <div class="field full"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" /></div>
         <div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
         <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" /></div>
-        <div class="field full"><label for="service">What kind of cleaning do you need?</label><select id="service" name="service"><option value="">Choose a service</option><option value="housekeeping">Housekeeping for my home</option><option value="property">Move-in / move-out property cleaning</option><option value="unsure">I’d like to talk it through</option></select></div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>About the property</legend>
-      <div class="form-grid">
-        <div class="field full"><label for="address">Property address</label><input id="address" name="address" type="text" autocomplete="street-address" /></div>
-        <div class="field full"><label for="area">Square footage</label><input id="area" name="square_footage" type="number" min="1" step="1" inputmode="numeric" aria-describedby="area-help" /><small id="area-help">An estimate is fine.</small></div>
-        <div class="field"><label for="bedrooms">Bedrooms</label><input id="bedrooms" name="bedrooms" type="number" min="0" step="1" inputmode="numeric" /></div>
-        <div class="field"><label for="bathrooms">Bathrooms</label><input id="bathrooms" name="bathrooms" type="number" min="0" step="0.5" inputmode="decimal" /></div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>A few helpful details</legend>
-      <div class="form-grid">
-        <div class="field full"><label for="children">Do children frequent the property?</label><select id="children" name="children"><option value="">Select an answer</option><option>Yes</option><option>No</option><option>Not sure</option></select></div>
-        <div class="field full"><label for="pets">Do any pets live on the property?</label><select id="pets" name="pets"><option value="">Select an answer</option><option>Yes</option><option>No</option><option>Not sure</option></select></div>
-        <div class="field full"><label for="oven">What color is the inside of the oven?</label><input id="oven" name="oven_interior_color" type="text" aria-describedby="oven-help" /><small id="oven-help">Not sure? You can leave this blank.</small></div>
-        <div class="field full"><label for="historic">Is the property considered historic?</label><select id="historic" name="historic"><option value="">Select an answer</option><option>Yes</option><option>No</option><option>Not sure</option></select></div>
       </div>
     </fieldset>
     <div class="form-close">

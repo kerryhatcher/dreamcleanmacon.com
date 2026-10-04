@@ -30,7 +30,7 @@ ASTRO_SITE=https://kerryhatcher.github.io ASTRO_BASE=/dreamcleanmacon.com npm ru
 
 ## Quote form
 
-The form is intentionally an inactive HTML mockup, per the client's instruction. It includes the seven questions from `info/intake_form.jpg`, name, phone, email, and service interest. Its submit button is disabled; there is no action URL, submit handler, storage, or submission request. Phone contact remains available. Service links preselect the relevant service without clearing other answers.
+The form is intentionally an inactive HTML mockup, per the client's instruction. The homepage asks only for name, phone number, and email address. The detailed pre-clean questionnaire in `info/intake_form.jpg` is retained as source material for a later intake process. Its submit button is disabled; there is no action URL, submit handler, storage, or submission request. Phone contact remains available. Service links lead to the same inline contact form.
 
 ## Photos and content
 

@@ -69,13 +69,13 @@ const canonical = new URL(base, Astro.site);
             <h3>For your home.</h3>
             <p>Housekeeping that makes room for a calmer day. Tell us about your home, the rooms you’d like cleaned, and the details that matter to you.</p>
             <p class="service-detail">Housekeeping · Homeowners</p>
-            <a class="text-link" href="#quote" data-service="housekeeping">Let’s talk about your home <Arrow /></a>
+            <a class="text-link" href="#quote">Let’s talk about your home <Arrow /></a>
           </article>
           <article id="property-cleaning">
             <h3>For its next chapter.</h3>
             <p>Moving in, moving out, or preparing for the next occupants? Ask about cleaning for apartment complexes, Airbnb properties, and other move-in / move-out needs.</p>
             <p class="service-detail">Move-in / move-out · Property clients</p>
-            <a class="text-link" href="#quote" data-service="property">Let’s talk about your property <Arrow /></a>
+            <a class="text-link" href="#quote">Let’s talk about your property <Arrow /></a>
           </article>
         </div>
       </section>
@@ -125,13 +125,5 @@ const canonical = new URL(base, Astro.site);
       <div class="footer-contact"><a href="tel:+16782328614">(678) 232-8614</a><a href={facebook}>Find us on Facebook <Arrow /></a></div>
       <p class="footer-close">A clean home. A calmer day.</p>
     </footer>
-    <script>
-      const service = document.querySelector<HTMLSelectElement>('#service');
-      document.querySelectorAll<HTMLAnchorElement>('[data-service]').forEach(link => {
-        link.addEventListener('click', () => {
-          if (service) { service.value = link.dataset.service ?? ''; service.dispatchEvent(new Event('change', { bubbles: true })); }
-        });
-      });
-    </script>
   </body>
 </html>
