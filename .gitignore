@@ -146,3 +146,6 @@ vite.config.ts.timestamp-*
 .astro/
 .playwright-cli/
 .impeccable/config.local.json
+.wrangler/
+.dev.vars
+.dev.vars.*
