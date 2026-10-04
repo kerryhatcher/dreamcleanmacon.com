@@ -24,11 +24,11 @@ The site uses the **Direct Upload** Cloudflare Pages project `dream-clean-macon`
 - Pull requests targeting `main` from this repository build and deploy to a separate `pr-<number>` branch. Their stable preview URL is `https://pr-<number>.dream-clean-macon.pages.dev`. New commits update the same preview URL.
 - Each deployment is linked from its GitHub environment and the workflow's job summary. Each upload also has an immutable deployment URL.
 - Fork pull requests run checks and builds without deploying, because GitHub does not expose repository secrets to them. The workflow uses `pull_request`, never `pull_request_target`.
-- Manual runs deploy only when run against `main`.
+- Manual production runs deploy only from `main`. To refresh a historical PR preview, run the workflow with `preview_branch=pr-N` from the desired source branch; the input is validated and this always prepares a noindex preview artifact.
 
 The production `dream-clean-macon.pages.dev` hostname is redirected to www through the Cloudflare account Bulk Redirect list `dream_clean_production_redirect`. It preserves paths and query strings with subdomain matching disabled, so previews remain available. This rule is managed outside the static build; domain-level redirects are unsupported in Pages `_redirects`.
 
-All builds use the production canonical URL. Preview builds run `node scripts/prepare-preview.mjs` to add `X-Robots-Tag: noindex, nofollow` and an allow-all `robots.txt` without a sitemap directive. Crawlers must be able to fetch a page to read its `noindex` header. Preview URLs are public and persist after a PR closes; old preview deployments can be removed from the Cloudflare dashboard. They do not affect production. Old previews retain the artifact deployed at that time; the PR #1 artifact contained a crawler block from the original workflow. Refresh the branch preview to apply current indexing rules.
+All builds use the production canonical URL. Preview builds run `node scripts/prepare-preview.mjs` to add `X-Robots-Tag: noindex, nofollow` and an allow-all `robots.txt` without a sitemap directive. Crawlers must be able to fetch a page to read its `noindex` header. Preview URLs are public and persist after a PR closes; old preview deployments can be removed from the Cloudflare dashboard. They do not affect production. Old previews retain the artifact deployed at that time; the PR #1 artifact contained a crawler block from the original workflow. Refresh the branch preview to apply current indexing rules: `GH_HOST=github.com gh workflow run deploy.yml --ref <source-branch> -f preview_branch=pr-1`.
 
 ### One-time credential setup
 

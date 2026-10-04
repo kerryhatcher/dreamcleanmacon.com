@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      preview_branch:
+        description: 'Optional existing PR preview to refresh (pr-N); empty deploys production from main only'
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -35,7 +40,7 @@ jobs:
           ASTRO_SITE: https://www.dreamcleanmacon.com
           ASTRO_BASE: /
       - name: Prevent preview indexing
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || inputs.preview_branch != ''
         run: node scripts/prepare-preview.mjs
       - name: Upload site artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
@@ -51,10 +56,11 @@ jobs:
     if: >-
       (github.event_name == 'pull_request' &&
        github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'workflow_dispatch' && inputs.preview_branch != '') ||
       (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.event_name == 'pull_request' && format('preview-pr-{0}', github.event.pull_request.number) || 'production' }}
+      name: ${{ inputs.preview_branch != '' && format('preview-{0}', inputs.preview_branch) || github.event_name == 'pull_request' && format('preview-pr-{0}', github.event.pull_request.number) || 'production' }}
       url: ${{ steps.deploy.outputs.pages-deployment-alias-url || steps.deploy.outputs.deployment-url }}
     steps:
       - name: Checkout
@@ -79,13 +85,22 @@ jobs:
             echo '::error::Add the CLOUDFLARE_API_TOKEN repository Actions secret (Account / Cloudflare Pages / Edit).'
             exit 1
           fi
+      - name: Validate manual preview branch
+        if: github.event_name == 'workflow_dispatch' && inputs.preview_branch != ''
+        env:
+          PREVIEW_BRANCH: ${{ inputs.preview_branch }}
+        run: |
+          if ! [[ "$PREVIEW_BRANCH" =~ ^pr-[0-9]+$ ]]; then
+            echo '::error::Manual preview refresh requires a pr-N branch name.'
+            exit 1
+          fi
       - name: Deploy to Cloudflare Pages
         id: deploy
         uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: e33f99b627bf3afdbc0311ed464a1e42
-          command: pages deploy dist --project-name=dream-clean-macon --branch=${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || 'main' }} --commit-hash=${{ github.event.pull_request.head.sha || github.sha }}
+          command: pages deploy dist --project-name=dream-clean-macon --branch=${{ inputs.preview_branch || github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || 'main' }} --commit-hash=${{ github.event.pull_request.head.sha || github.sha }}
       - name: Record deployment links
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
@@ -95,7 +110,7 @@ jobs:
       - name: Verify live SEO responses
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
-          DEPLOYMENT_MODE: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+          DEPLOYMENT_MODE: ${{ (github.event_name == 'pull_request' || inputs.preview_branch != '') && 'preview' || 'production' }}
         run: |
           # Allow a short propagation window; fail CI if the deployed responses disagree.
           for attempt in 1 2 3; do
