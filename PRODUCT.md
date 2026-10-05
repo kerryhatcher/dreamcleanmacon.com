@@ -70,3 +70,7 @@ The homepage links to dedicated housekeeping and move-in / move-out cleaning pag
 The user supplied the Google Business listing: https://share.google/Nra2FQnO7CS2KkM4b. Its public phone and website match. Its description mentions deep and general commercial cleaning beyond the currently confirmed website scope; confirm those offerings before expanding site claims. Listing review counts and hours are not copied into structured data.
 
 PR previews allow crawling and send `X-Robots-Tag: noindex, nofollow`. A deployment verifier checks actual HTTP responses. The production Pages hostname redirects through an exact-host Cloudflare Bulk Redirect; preview subdomains are excluded.
+
+## Confirmed property-manager experience — October 4, 2026
+
+The user confirmed extensive experience with property managers and understanding their needs and schedules, and stated “No job too big or too small.” The approved homepage leads with apartment and Airbnb property clients while keeping housekeeping for homes prominent. These statements do not establish additional service categories, capacity guarantees, availability, or package commitments.

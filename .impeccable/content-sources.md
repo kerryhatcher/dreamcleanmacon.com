@@ -19,3 +19,9 @@ The hero is a generated illustrative interior, not presented as a Dream Clean jo
 Housekeeping uses the existing stovetop pair, the kitchen pair at source index 10/11, bathroom comparison at index 18, and toilet comparison at index 17. Move-in / move-out uses the existing oven pair, shower-door comparison at index 13, bathtub comparison at index 15, and refrigerator comparison at index 19. The two service galleries have no shared source photos.
 
 The added comparisons were visually reviewed against the supplied originals. Collages retain their original Before/After labels and full image framing. These examples demonstrate Dream Clean’s work; no particular job is classified as a move-out or recurring visit without source confirmation. Paths and provenance are recorded in asset-sources.json and preserved in optimized-image sidecars.
+
+## Approved Property Lookbook homepage — October 4, 2026
+
+The user confirmed extensive property-manager experience, understanding managers’ needs and schedules, and “No job too big or too small.” The user selected Property Lookbook in `.impeccable/questions/6db84e2f.answer.json` and authorized implementation. Later user instructions approved matched oven framing and aligned top/content widths. The current homepage retains the supplied logo and existing real oven, stovetop, refrigerator, and team photos; no new production imagery was introduced. The generated interior described earlier is historical and no longer appears on the homepage. The decision comp is conceptual design evidence, not evidence of a Dream Clean cleaning result. Existing source records and service-gallery provenance above remain intact.
+
+The accepted Live header refinement uses a full-width divider, a 104px desktop header, and 38px navigation gaps. The current supplied oven images are square crops; the comparison retains its CSS framing.
