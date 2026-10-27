@@ -2,6 +2,7 @@
 import '@fontsource/playfair-display/latin-400.css';
 import '../styles/global.css';
 import QuoteForm from '../components/QuoteForm.astro';
+import BrandLogo from '../components/BrandLogo.astro';
 import { facebook, googleBusiness, areaServed } from '../data/business';
 interface Props { title: string; description: string; heading: string; service: string; intro: string; relatedHref: string; relatedLabel: string; }
 const { title, description, heading, service, intro, relatedHref, relatedLabel } = Astro.props;
@@ -36,7 +37,7 @@ const schema = { '@context': 'https://schema.org', '@graph': [
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <a class="brand" href={base} aria-label="Dream Clean home"><img src={`${base}images/logo.png`} alt="Dream Clean Housekeeping Co." width="500" height="500" /></a>
+      <a class="brand" href={base} aria-label="Dream Clean home"><BrandLogo /></a>
       <nav aria-label="Main navigation">
         <a href={`${base}housekeeping/`}>Housekeeping</a>
         <a href={`${base}move-in-move-out-cleaning/`}>Property cleaning</a>

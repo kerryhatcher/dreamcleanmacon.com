@@ -8,7 +8,8 @@
     "build": "astro build",
     "postbuild": "node scripts/image-provenance.mjs",
     "preview": "astro preview --host 127.0.0.1",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "playwright test"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
@@ -19,6 +20,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "axe-core": "^4.13.0",
     "wrangler": "^4.147.0"
   }

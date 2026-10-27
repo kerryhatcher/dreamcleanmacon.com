@@ -12,6 +12,7 @@ import refrigerator from '../../public/images/refrigerator-before-after.jpg';
 import team from '../../public/images/team.jpg';
 import Arrow from '../components/Arrow.astro';
 import QuoteForm from '../components/QuoteForm.astro';
+import BrandLogo from '../components/BrandLogo.astro';
 import '../styles/global.css';
 import { facebook, googleBusiness, counties, areaServed } from '../data/business';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
@@ -77,7 +78,7 @@ const structuredData = {
   <body class="commercial-home">
     <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
-                <a class="brand" href="#main" aria-label="Dream Clean home"><img src={`${base}images/logo.png`} alt="Dream Clean Housekeeping Co." width="500" height="500" /></a>
+                <a class="brand" href="#main" aria-label="Dream Clean home"><BrandLogo sizes="160px" /></a>
                 <nav aria-label="Main navigation">
                   <a href="#property-cleaning">Property cleaning</a>
                   <a href={`${base}housekeeping/`}>Housekeeping</a>
@@ -88,10 +89,10 @@ const structuredData = {
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-heading">
-          <h1 id="hero-title">A fresh start<br />for every property.</h1>
+          <h1 id="hero-title">Apartment &amp; Airbnb<br />cleaning in Macon,&nbsp;GA.</h1>
         </div>
         <div class="hero-intro">
-          <p>Apartment and Airbnb move-in / move-out cleaning in Macon &amp; Middle Georgia.</p>
+          <p>A fresh start for every property. Move-in / move-out cleaning in Macon &amp; Middle Georgia.</p>
           <p>Experienced with property managers and their needs and schedules.</p>
           <a class="button" href="#quote">Request a property quote <Arrow /></a>
         </div>
@@ -153,8 +154,8 @@ const structuredData = {
           <div class="stovetop-work">
             <h3>A clearer kitchen.</h3>
             <div class="work-pair compact">
-              <figure><Image src={stoveBefore} alt="Before cleaning: cooking residue around a white electric stovetop’s burners" widths={[300, 500]} sizes="(max-width: 700px) 44vw, 24vw" format="webp" loading="lazy" /><figcaption>Before</figcaption></figure>
-              <figure><Image src={stoveAfter} alt="After cleaning: the same white electric stovetop with clean burners and surface" widths={[300, 500]} sizes="(max-width: 700px) 44vw, 24vw" format="webp" loading="lazy" /><figcaption>After</figcaption></figure>
+              <figure><Image src={stoveBefore} alt="Before cleaning: cooking residue around a white electric stovetop’s burners" widths={[200, 320, 500]} sizes="(max-width: 700px) calc((100vw - 58px) / 2), 24vw" format="webp" loading="lazy" /><figcaption>Before</figcaption></figure>
+              <figure><Image src={stoveAfter} alt="After cleaning: the same white electric stovetop with clean burners and surface" widths={[200, 320, 500]} sizes="(max-width: 700px) calc((100vw - 58px) / 2), 24vw" format="webp" loading="lazy" /><figcaption>After</figcaption></figure>
             </div>
           </div>
           <figure class="fridge-work"><Image src={refrigerator} alt="Dream Clean’s before-and-after comparison showing refrigerator shelves and drawers cleaned of residue" widths={[400, 700]} sizes="(max-width: 700px) 90vw, 32vw" format="webp" loading="lazy" /><figcaption>A fresh start for the refrigerator.</figcaption></figure>
