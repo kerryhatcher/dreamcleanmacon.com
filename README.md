@@ -85,6 +85,7 @@ On October 27, 2026, the existing Zaraz GA4 tool (`TItR`, measurement ID `G-Q01T
 - Its trigger excludes `generate_lead` using `NOT_MATCH_REGEX ^generate_lead$` on `{{ client.__zarazTrack }}`.
 - A dedicated `DreamCleanQuoteSuccess` trigger matches `generate_lead` exactly. Its event action forwards `en=generate_lead`, client enrichment, and `conversion=true`. This gives a successful quote exactly one forwarding action.
 - GA4 property `557292489` registers `generate_lead` as a key event, once per event, without an invented default monetary value. `phone_click` is an ordinary event.
+- Event-scoped custom dimensions `Service type` (`service_type`) and `Phone link location` (`link_location`) expose the fixed service/control categories in GA4 reports.
 
 Zaraz runs in realtime configuration mode, so those settings apply separately from site deployment. Preserve them when editing Cloudflare. After production deployment, use GA4 Realtime/DebugView and actual Formspree submissions to check collection. Do not submit fake customer leads to production or treat a simulated browser test as proof of email delivery.
 
