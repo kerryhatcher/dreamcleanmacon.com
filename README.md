@@ -65,7 +65,34 @@ References: [Cloudflare CI deployment guide](https://developers.cloudflare.com/p
 
 ## Quote form
 
-The quote form uses a standard HTML POST to `https://formspree.io/f/xeaoybzw`. Name and email are required; phone and a cleaning-needs message are optional. Formspree supplies the confirmation page. Phone links remain available throughout the site. A request is an inquiry, not a confirmed booking. The detailed questionnaire in `info/intake_form.jpg` remains reference material for a later intake process.
+The quote form retains a standard HTML POST to `https://formspree.io/f/xeaoybzw` when JavaScript is unavailable. With JavaScript, it submits the same fields to Formspree with `Accept: application/json` and displays an accessible inline result. Only a successful HTTP response with `ok: true` confirms receipt. Name and email are required; phone and a cleaning-needs message are optional. Pending and accepted submissions cannot be submitted twice. Errors retain the entered details; an uncertain response advises checking by phone before retrying. A request is an inquiry, not a confirmed booking. The detailed questionnaire in `info/intake_form.jpg` remains reference material for a later intake process.
+
+### Inquiry measurement
+
+`src/scripts/inquiry-tracking.ts` uses the existing Cloudflare Zaraz integration, not a second Google tag. It emits events only on `www.dreamcleanmacon.com` and the three known marketing routes. Localhost and Pages previews cannot emit production inquiry events.
+
+| Event | Trigger | Parameters |
+| --- | --- | --- |
+| `generate_lead` | Formspree confirms acceptance | `page_path`, `service_type`, `form_id=cleaning_quote`, `contact_method=quote_form` |
+| `phone_click` | A telephone link is activated | `page_path`, `service_type`, `link_location` (`header`, `footer`, `quote`, or `content`) |
+
+No names, email addresses, customer phone numbers, messages, query strings, or free-form link text are included in these custom event payloads. Telephone links keep their native behavior. Analytics failure does not block either contact method. A phone click measures intent, not a connected call or qualified lead. JavaScript-disabled submissions still work but do not emit these browser events.
+
+On October 27, 2026, the existing Zaraz GA4 tool (`TItR`, measurement ID `G-Q01TBY2YK7`) was configured as follows:
+
+- Pageview action remains unchanged.
+- The `AllTracks` action forwards custom events with `en={{ client.__zarazTrack }}` and client enrichment, with its blanket `conversion=true` removed.
+- Its trigger excludes `generate_lead` using `NOT_MATCH_REGEX ^generate_lead$` on `{{ client.__zarazTrack }}`.
+- A dedicated `DreamCleanQuoteSuccess` trigger matches `generate_lead` exactly. Its event action forwards `en=generate_lead`, client enrichment, and `conversion=true`. This gives a successful quote exactly one forwarding action.
+- GA4 property `557292489` registers `generate_lead` as a key event, once per event, without an invented default monetary value. `phone_click` is an ordinary event.
+
+Zaraz runs in realtime configuration mode, so those settings apply separately from site deployment. Preserve them when editing Cloudflare. After production deployment, use GA4 Realtime/DebugView and actual Formspree submissions to check collection. Do not submit fake customer leads to production or treat a simulated browser test as proof of email delivery.
+
+### Browser tests
+
+Run `npm run build`, `npx playwright install chromium`, then `npm test`. CI installs Chromium and runs the same suite before deploying. Tests proxy production-host URLs to the local build, stub Zaraz, and intercept every Formspree request; they send no real inquiries or analytics. They cover accepted/invalid/rejected/network-failed submissions, duplicate protection, retries, telephone intent, unavailable analytics, production-host restrictions, and native POST without JavaScript.
+
+The default test server is `http://127.0.0.1:4517` and must be unused. For an intentionally started and verified local preview only, `PLAYWRIGHT_REUSE_SERVER=1 npm test` permits reuse outside CI. `--ignore-lock` keeps Astro's test preview in the foreground.
 
 ## SEO foundation
 
@@ -73,7 +100,7 @@ The quote form uses a standard HTML POST to `https://formspree.io/f/xeaoybzw`. N
 - `src/pages/404.astro` builds a top-level `dist/404.html`. Cloudflare Pages uses it for missing URLs with HTTP 404, avoiding its automatic homepage fallback. The error page is marked `noindex` and offers a homepage link and phone contact.
 - The homepage supplies a descriptive title, description, canonical URL, Open Graph metadata, and Organization/Service JSON-LD using the visible business facts. It does not claim a public street address, business hours, pricing, or aggregate review rating.
 - Structured data identifies the business and services; it does not promise rankings or LocalBusiness rich results. `AGENTS.md` records maintenance rules and is not copied to the public build.
-- Dedicated `/housekeeping/` and `/move-in-move-out-cleaning/` pages explain the confirmed services, quote preparation, and property access. Shared business facts live in `src/data/business.ts`. The verified Google Business listing is linked alongside Facebook. Search Console verification remains follow-up work. Submit `https://www.dreamcleanmacon.com/sitemap-index.xml` in Search Console after merging.
+- Dedicated `/housekeeping/` and `/move-in-move-out-cleaning/` pages explain the confirmed services, quote preparation, and property access. Shared business facts live in `src/data/business.ts`. The Google Business listing is linked alongside Facebook. The October 27 audit confirmed Search Console access, all three marketing pages indexed, and a successfully submitted `https://www.dreamcleanmacon.com/sitemap-index.xml`.
 
 CI runs `node scripts/verify-deployment.mjs <origin> <preview|production>` after deployment and fails on incorrect page status, indexing headers, robots rules, canonical metadata, JSON-LD parsing, or sitemap content. Production verification uses the canonical www origin and checks the apex and production Pages redirects; preview verification uses the deployment URL. Run the same command manually to audit a deployment.
 

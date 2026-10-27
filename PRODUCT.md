@@ -21,7 +21,7 @@ These audiences and the move-in/move-out use case were confirmed by the user. Sp
 
 Create a business website for Dream Clean in Macon, Georgia. The business describes itself as a “Housekeeping company offering renewed tranquility to all of Middle Georgia.”
 
-The website should help the confirmed audiences understand the business and request a quote through a form or phone call. The user confirmed both inquiry methods. The active contact form posts to Formspree at https://formspree.io/f/xeaoybzw. Formspree shows a confirmation page; the request does not confirm a booking or availability.
+The website should help the confirmed audiences understand the business and request a quote through a form or phone call. The user confirmed both inquiry methods. The active contact form posts to Formspree at https://formspree.io/f/xeaoybzw. JavaScript enhances this with inline confirmed-success and error states; without JavaScript, the standard POST uses Formspree’s confirmation page. A request does not confirm a booking or availability.
 
 ## Operating Context
 
@@ -74,3 +74,7 @@ PR previews allow crawling and send `X-Robots-Tag: noindex, nofollow`. A deploym
 ## Confirmed property-manager experience — October 4, 2026
 
 The user confirmed extensive experience with property managers and understanding their needs and schedules, and stated “No job too big or too small.” The approved homepage leads with apartment and Airbnb property clients while keeping housekeeping for homes prominent. These statements do not establish additional service categories, capacity guarantees, availability, or package commitments.
+
+## Inquiry measurement — October 27, 2026
+
+The user authorized implementing the SEO audit recommendations, starting with quote and phone-click tracking. Confirmed Formspree acceptance emits `generate_lead` through the existing Zaraz GA4 integration; telephone links emit `phone_click` as intent. Custom payloads contain only known page/service and control identifiers. They exclude customer-entered details and URL query strings. Localhost and previews do not emit production inquiry events. The form retains native POST fallback and never reports an attempted or failed submission as a lead. See README.md for the separate Zaraz/GA4 configuration and validation steps.

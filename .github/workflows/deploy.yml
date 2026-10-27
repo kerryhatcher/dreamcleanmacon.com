@@ -39,6 +39,10 @@ jobs:
         env:
           ASTRO_SITE: https://www.dreamcleanmacon.com
           ASTRO_BASE: /
+      - name: Install test browser
+        run: npx playwright install --with-deps chromium
+      - name: Test quote and phone tracking
+        run: npm test
       - name: Prevent preview indexing
         if: github.event_name == 'pull_request' || inputs.preview_branch != ''
         run: node scripts/prepare-preview.mjs

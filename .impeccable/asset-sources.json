@@ -1,5 +1,10 @@
 [
   {
+    "file": "public/images/logo.png",
+    "source": "logo.png",
+    "origin": "Origin: logo.png, the user-supplied Dream Clean logo; resized and encoded as WebP without changing the artwork."
+  },
+  {
     "file": "public/images/oven-before.jpg",
     "source": "info/473081667_122222859680021887_3952880778863812622_n.jpg",
     "origin": "Origin: info/473081667_122222859680021887_3952880778863812622_n.jpg, supplied by the user from the client Dream Clean Facebook page; copied without visual edits."

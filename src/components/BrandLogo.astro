@@ -1,0 +1,7 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../public/images/logo.png';
+interface Props { sizes?: string }
+const { sizes = '(max-width: 700px) 160px, 12.1vw' } = Astro.props;
+---
+<Image src={logo} alt="Dream Clean Housekeeping Co." widths={[160, 240, 320, 500]} sizes={sizes} format="webp" quality={85} loading="eager" />
