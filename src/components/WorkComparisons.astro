@@ -9,7 +9,7 @@ const { photos } = Astro.props;
 <div class="work-comparisons">
   {photos.map(photo => (
     <figure>
-      <Image src={photo.src} alt={photo.alt} widths={[400, 700, 1000]} sizes="(max-width: 700px) 90vw, 40vw" format="webp" loading="lazy" />
+      <Image src={photo.src} alt={photo.alt} width={1000} widths={[400, 700, 1000]} sizes="(max-width: 700px) 90vw, 40vw" format="webp" quality={70} loading="lazy" />
       <figcaption>{photo.caption}<span>Before &amp; after</span></figcaption>
     </figure>
   ))}

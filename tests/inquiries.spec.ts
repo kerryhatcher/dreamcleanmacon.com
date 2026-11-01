@@ -1,4 +1,9 @@
 import { test, expect, type Page } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+
+// Astro preview does not apply Cloudflare's _headers file. Exercise the real CSP
+// in browser tests so both enhanced submissions and native POST stay usable.
+const csp = readFileSync('public/_headers', 'utf8').match(/Content-Security-Policy: (.+)/)![1];
 
 const production = 'https://www.dreamcleanmacon.com';
 const endpoint = 'https://formspree.io/f/xeaoybzw';
@@ -16,14 +21,18 @@ async function fillQuote(page: Page) {
   await page.getByLabel('Tell us about your cleaning needs (optional)').fill('Private test message');
 }
 
-test.beforeEach(async ({ page }) => {
+async function serveProductionBuild(page: Page) {
   // Production-host behavior using only local build output. Never contact the live form.
   await page.route(`${production}/**`, async route => {
     const url = new URL(route.request().url());
     const response = await route.fetch({ url: `http://127.0.0.1:4517${url.pathname}${url.search}` });
-    await route.fulfill({ response });
+    await route.fulfill({ response, headers: { ...response.headers(), 'content-security-policy': csp } });
   });
   await page.route('https://formspree.io/**', route => route.abort());
+}
+
+test.beforeEach(async ({ page }) => {
+  await serveProductionBuild(page);
   await page.addInitScript(() => {
     (window as any).__inquiryEvents = [];
     (window as any).zaraz = { track: (name: string, properties: object) => {
@@ -168,12 +177,14 @@ test('localhost does not emit production inquiry events', async ({ page }) => {
 test('without JavaScript the native POST remains usable', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, reducedMotion: 'reduce' });
   const page = await context.newPage();
+  await serveProductionBuild(page);
   let posts = 0;
   await page.route(endpoint, async route => {
     posts++;
     await route.fulfill({ contentType: 'text/html', body: '<h1>Native POST received</h1>' });
   });
-  await page.goto('http://127.0.0.1:4517/');
+  const response = await page.goto(production);
+  expect(response?.headers()['content-security-policy']).toBe(csp);
   await fillQuote(page);
   await page.getByLabel('Email address (required)').press('Enter');
   await expect(page.getByRole('heading', { name: 'Native POST received' })).toBeVisible();
