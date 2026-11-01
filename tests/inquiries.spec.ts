@@ -1,4 +1,9 @@
 import { test, expect, type Page } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+
+// Astro preview does not apply Cloudflare's _headers file. Exercise the real CSP
+// in browser tests so both enhanced submissions and native POST stay usable.
+const csp = readFileSync('public/_headers', 'utf8').match(/Content-Security-Policy: (.+)/)![1];
 
 const production = 'https://www.dreamcleanmacon.com';
 const endpoint = 'https://formspree.io/f/xeaoybzw';
@@ -21,7 +26,7 @@ test.beforeEach(async ({ page }) => {
   await page.route(`${production}/**`, async route => {
     const url = new URL(route.request().url());
     const response = await route.fetch({ url: `http://127.0.0.1:4517${url.pathname}${url.search}` });
-    await route.fulfill({ response });
+    await route.fulfill({ response, headers: { ...response.headers(), 'content-security-policy': csp } });
   });
   await page.route('https://formspree.io/**', route => route.abort());
   await page.addInitScript(() => {
