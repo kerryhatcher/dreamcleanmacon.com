@@ -9,6 +9,11 @@ async function request(path) {
 for (const path of ['/', '/housekeeping/', '/move-in-move-out-cleaning/']) {
   const response = await request(path);
   assert.equal(response.status, 200, `${path}: expected HTTP 200`);
+  assert.match(response.headers.get('strict-transport-security') || '', /max-age=31536000/i, `${path}: missing HSTS`);
+  const csp = response.headers.get('content-security-policy') || '';
+  for (const directive of ["base-uri 'self'", "object-src 'none'", "frame-ancestors 'none'", "form-action 'self' https://formspree.io"]) {
+    assert(csp.includes(directive), `${path}: missing CSP directive ${directive}`);
+  }
   const header = response.headers.get('x-robots-tag') || '';
   if (mode === 'preview') assert.match(header, /noindex,\s*nofollow/i, `${path}: missing preview indexing header`);
   else assert(!/noindex/i.test(header), `${path}: production must be indexable`);
