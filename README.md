@@ -121,7 +121,7 @@ To test the HTP integration without contacting a real receiver, build and run it
 
 ```sh
 PUBLIC_HTP_FORM_ENDPOINT='https://htp.example.invalid/public/forms/11111111-1111-4111-8111-111111111111' npm run build
-PUBLIC_HTP_FORM_ENDPOINT='https://htp.example.invalid/public/forms/11111111-1111-4111-8111-111111111111' npx playwright test tests/htp-form.spec.ts
+PUBLIC_HTP_FORM_ENDPOINT='https://htp.example.invalid/public/forms/11111111-1111-4111-8111-111111111111' npx playwright test tests/htp-form.spec.ts tests/htp-safety.spec.ts
 ```
 
 The mock does not demonstrate a live durable inbox or domain verification. Receiver deployment, verified exact www origin, independently provisioned API host and form with the required saved fields, independent reviews, and an authorized visitor-to-inbox check remain release gates.

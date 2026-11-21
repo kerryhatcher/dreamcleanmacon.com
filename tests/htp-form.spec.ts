@@ -6,6 +6,7 @@ test.beforeEach(async ({ context }) => { await blockExternalRequests(context); }
 test('HTP ambiguous submission survives reload and replays once without changed values', async ({ page }) => {
   const payloads: any[] = [];
   await page.route('https://www.dreamcleanmacon.com/**', async route => {
+    if (route.request().method() !== 'GET') return route.abort();
     const url = new URL(route.request().url());
     await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4517${url.pathname}` }) });
   });

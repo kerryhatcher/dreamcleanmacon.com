@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
+import { blockExternalRequests } from './htp-safety';
 
 const production = 'https://www.dreamcleanmacon.com';
 const endpoint = 'https://formspree.io/f/xeaoybzw';
@@ -8,7 +9,12 @@ async function events(page: Page) {
   return page.evaluate(() => (window as any).__inquiryEvents);
 }
 
+async function assertFormspreeAction(page: Page) {
+  await expect(page.locator('[data-quote-form]')).toHaveAttribute('action', endpoint, { timeout: 1000 });
+}
+
 async function fillQuote(page: Page) {
+  await assertFormspreeAction(page);
   await expect(page).toHaveTitle(/Dream Clean/);
   await page.getByLabel('Your name (required)').fill('Browser Test');
   await page.getByLabel('Email address (required)').fill('browser-test@example.invalid');
@@ -16,9 +22,11 @@ async function fillQuote(page: Page) {
   await page.getByLabel('Tell us about your cleaning needs (optional)').fill('Private test message');
 }
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
+  await blockExternalRequests(context);
   // Production-host behavior using only local build output. Never contact the live form.
   await page.route(`${production}/**`, async route => {
+    if (route.request().method() !== 'GET') return route.abort();
     const url = new URL(route.request().url());
     const response = await route.fetch({ url: `http://127.0.0.1:4517${url.pathname}${url.search}` });
     await route.fulfill({ response });
@@ -86,6 +94,7 @@ test('invalid form never posts or records a lead', async ({ page }) => {
   let posts = 0;
   await page.route(endpoint, async route => { posts++; await route.abort(); });
   await page.goto(production);
+  await assertFormspreeAction(page);
   await page.getByRole('button', { name: 'Request a quote', exact: true }).click();
   expect(await page.getByLabel('Your name (required)').evaluate((input: HTMLInputElement) => input.validity.valueMissing)).toBe(true);
   expect(posts).toBe(0);
@@ -167,6 +176,7 @@ test('localhost does not emit production inquiry events', async ({ page }) => {
 
 test('without JavaScript the native POST remains usable', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, reducedMotion: 'reduce' });
+  await blockExternalRequests(context);
   const page = await context.newPage();
   let posts = 0;
   await page.route(endpoint, async route => {
