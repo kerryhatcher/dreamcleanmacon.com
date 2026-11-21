@@ -1,5 +1,17 @@
 ---
 import Arrow from './Arrow.astro';
+
+// Both values are public routing configuration, never credentials. A malformed
+// setting must fail the build instead of silently sending inquiries elsewhere.
+const htpEndpoint = import.meta.env.PUBLIC_HTP_FORM_ENDPOINT;
+if (htpEndpoint) {
+  let url: URL;
+  try { url = new URL(htpEndpoint); } catch { throw new Error('Invalid PUBLIC_HTP_FORM_ENDPOINT'); }
+  if (url.protocol !== 'https:' || !/^[a-z0-9-]+\.supabase\.co$/.test(url.hostname) || url.port || url.username || url.password || url.pathname !== '/functions/v1/form-submit' || url.hash || [...url.searchParams.keys()].join() !== 'form' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(url.searchParams.get('form') || '')) {
+    throw new Error('Invalid PUBLIC_HTP_FORM_ENDPOINT');
+  }
+}
+const endpoint = htpEndpoint || 'https://formspree.io/f/xeaoybzw';
 ---
 <section id="quote" class="quote-section section-wrap" aria-labelledby="quote-title">
   <div class="quote-heading">
@@ -9,8 +21,9 @@ import Arrow from './Arrow.astro';
     <a href="tel:+16782328614" class="text-link">Call for a quote <Arrow /></a>
     <a class="quote-phone" href="tel:+16782328614">(678) 232-8614</a>
   </div>
-  <form data-quote-form action="https://formspree.io/f/xeaoybzw" method="POST" aria-label="Cleaning quote contact form" aria-describedby="form-note">
+  <form data-quote-form action={endpoint} data-htp={htpEndpoint ? "true" : "false"} method="POST" aria-label="Cleaning quote contact form" aria-describedby="form-note">
     <p class="form-status" data-form-status role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+    {htpEndpoint && <div hidden><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off" /></div>}
     <fieldset>
       <legend>Your contact details</legend>
       <div class="form-grid">
@@ -34,13 +47,49 @@ import Arrow from './Arrow.astro';
     const status = form.querySelector<HTMLElement>('[data-form-status]')!;
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const label = form.querySelector<HTMLElement>('[data-submit-label]')!;
+    const htp = form.dataset.htp === 'true';
+    const storageKey = `dreamclean-quote:${form.action}`;
+    type Payload = { submission_id: string; name: string; email: string; phone: string; message: string; website: string };
+    let saved: Payload | null = null;
+    try {
+      const value = sessionStorage.getItem(storageKey);
+      if (htp && value) {
+        const parsed = JSON.parse(value);
+        if (['submission_id', 'name', 'email', 'phone', 'message', 'website'].every(key => typeof parsed?.[key] === 'string')) saved = parsed;
+      }
+    } catch { /* Storage is optional; keep retry state in memory. */ }
+    if (saved) {
+      for (const key of ['name', 'email', 'phone', 'message'] as const) {
+        (form.elements.namedItem(key) as HTMLInputElement).value = saved[key];
+      }
+      status.dataset.state = 'error';
+      status.textContent = 'Your previous request could not be confirmed. Retry with these same details, or call (678) 232-8614 before changing them.';
+    }
+    const persist = (payload: Payload | null) => {
+      saved = payload;
+      try { if (payload) sessionStorage.setItem(storageKey, JSON.stringify(payload)); else sessionStorage.removeItem(storageKey); } catch { /* In-memory retry still works. */ }
+    };
     let pending = false;
     let submitted = false;
 
     form.addEventListener('submit', async event => {
       event.preventDefault();
       if (pending || submitted || !form.reportValidity()) return;
-      const body = new FormData(form);
+      const hadSaved = saved !== null;
+      const values = new FormData(form);
+      let body: FormData | string = values;
+      if (htp) {
+        const fields = { name: String(values.get('name') || ''), email: String(values.get('email') || ''), phone: String(values.get('phone') || ''), message: String(values.get('message') || ''), website: String(values.get('website') || '') };
+        if (saved && (Object.keys(fields) as (keyof typeof fields)[]).some(key => saved![key] !== fields[key])) {
+          status.dataset.state = 'error';
+          status.textContent = 'Your earlier request may have been received. Please restore the original details to retry, or call (678) 232-8614 before sending changes.';
+          status.focus();
+          return;
+        }
+        const payload = saved || { submission_id: crypto.randomUUID(), ...fields };
+        persist(payload);
+        body = JSON.stringify(payload);
+      }
       pending = true;
       button.disabled = true;
       label.textContent = 'Sending…';
@@ -54,17 +103,26 @@ import Arrow from './Arrow.astro';
         const response = await fetch(form.action, {
           method: 'POST',
           body,
-          headers: { Accept: 'application/json' },
+          headers: htp ? { Accept: 'application/json', 'Content-Type': 'application/json' } : { Accept: 'application/json' },
           signal: controller.signal,
         });
         const result = await response.json();
         if (!response.ok || result?.ok !== true) {
           status.dataset.state = 'error';
-          status.textContent = 'Your request wasn’t accepted. Please check your details and try again, or call (678) 232-8614.';
+          if (htp && response.status === 409) {
+            status.textContent = 'We couldn’t reconcile this request with an earlier submission. Please call (678) 232-8614 before trying again.';
+          } else {
+            const definite = [413, 422, 429].includes(response.status);
+            if (htp && definite && !hadSaved) persist(null);
+            status.textContent = !htp || (definite && !hadSaved)
+              ? 'Your request wasn’t accepted. Please check your details and try again, or call (678) 232-8614.'
+              : 'We couldn’t confirm your request. Your details are still here. Please call (678) 232-8614 to check before trying again.';
+          }
           return;
         }
 
         submitted = true;
+        if (htp) persist(null);
         form.reset();
         form.querySelector('fieldset')!.disabled = true;
         label.textContent = 'Request sent';
