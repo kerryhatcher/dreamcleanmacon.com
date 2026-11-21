@@ -65,7 +65,7 @@ References: [Cloudflare CI deployment guide](https://developers.cloudflare.com/p
 
 ## Quote form
 
-The quote form defaults to Formspree until the HTP receiver is deployed, the exact production host is verified, and the coordinator provisions the public form. To prepare an HTP build, set `PUBLIC_HTP_FORM_ENDPOINT` to the exact provisioned `https://<project>.supabase.co/functions/v1/form-submit?form=<public-uuid>` before `npm run build`. The build rejects malformed endpoints. This value is public routing information, not a credential; verify the project and UUID independently before activation. No private key belongs in the site. Remove the variable and rebuild to roll back to Formspree; preserve HTP responses during rollback.
+The quote form defaults to Formspree until the HTP receiver is deployed, the exact production host is verified, and the coordinator provisions the public form. To prepare an HTP build, set `PUBLIC_HTP_FORM_ENDPOINT` to the exact provisioned `https://<HTP_API_HOST>/public/forms/<FORM_UUID>` before `npm run build`. The build rejects malformed endpoints. This value is public routing information, not a credential; verify the API host and form UUID independently before activation. No private key belongs in the site. Remove the variable and rebuild to roll back to Formspree; preserve HTP responses during rollback.
 
 With HTP enabled, JavaScript sends JSON and retains the submission ID and original values in session storage for retry after an uncertain outcome, including reloads in the same tab. If storage is unavailable, retry state lasts only for the current page. An uncertain submission must be retried with unchanged details; call the business to reconcile before sending changes. Confirmed success clears stored values and sends `generate_lead` once. A standard HTML POST remains available without JavaScript, but it cannot deduplicate an uncertain retry and displays the receiver's JSON response. The confirmation states that a visit is not booked. Name and email are required; phone and message are optional.
 
@@ -120,8 +120,8 @@ Product context is in `PRODUCT.md`. The confirmed homepage brief and selected di
 To test the HTP integration without contacting a real receiver, build and run its isolated browser test with the same mock configuration:
 
 ```sh
-PUBLIC_HTP_FORM_ENDPOINT='https://pilot-test.supabase.co/functions/v1/form-submit?form=11111111-1111-4111-8111-111111111111' npm run build
-PUBLIC_HTP_FORM_ENDPOINT='https://pilot-test.supabase.co/functions/v1/form-submit?form=11111111-1111-4111-8111-111111111111' npx playwright test tests/htp-form.spec.ts
+PUBLIC_HTP_FORM_ENDPOINT='https://htp.example.invalid/public/forms/11111111-1111-4111-8111-111111111111' npm run build
+PUBLIC_HTP_FORM_ENDPOINT='https://htp.example.invalid/public/forms/11111111-1111-4111-8111-111111111111' npx playwright test tests/htp-form.spec.ts
 ```
 
-The mock does not demonstrate a live durable inbox or domain verification. Receiver deployment, verified exact host, provisioned form, independent reviews, and an authorized visitor-to-inbox check remain release gates.
+The mock does not demonstrate a live durable inbox or domain verification. Receiver deployment, verified exact www origin, independently provisioned API host and form with the required saved fields, independent reviews, and an authorized visitor-to-inbox check remain release gates.

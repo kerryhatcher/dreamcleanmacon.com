@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { assertMockAction, blockExternalRequests, mockEndpoint as endpoint } from './htp-safety';
 
-const endpoint = 'https://htp.example.invalid/public/forms/11111111-1111-4111-8111-111111111111';
-test.skip(!process.env.PUBLIC_HTP_FORM_ENDPOINT, 'Requires a build with the mock HTP endpoint');
+test.skip(process.env.PUBLIC_HTP_FORM_ENDPOINT !== endpoint, 'Requires the exact mock HTP endpoint');
+test.beforeEach(async ({ context }) => { await blockExternalRequests(context); });
 test('HTP ambiguous submission survives reload and replays once without changed values', async ({ page }) => {
   const payloads: any[] = [];
   await page.route('https://www.dreamcleanmacon.com/**', async route => {
@@ -19,6 +20,7 @@ test('HTP ambiguous submission survives reload and replays once without changed 
     await route.fulfill({ json: { ok: true, duplicate: true }, headers: { 'access-control-allow-origin': '*' } });
   });
   await page.goto('https://www.dreamcleanmacon.com/');
+  await assertMockAction(page);
   await page.getByLabel('Your name (required)').fill('Test');
   await page.getByLabel('Email address (required)').fill('test@example.invalid');
   await page.getByRole('button', { name: 'Request a quote' }).click();
@@ -45,6 +47,7 @@ test('HTP validation allows corrected retry; conflict never silently resubmits',
     await route.fulfill({ status: payloads.length === 1 ? 422 : 409, json: { ok: false }, headers: { 'access-control-allow-origin': '*' } });
   });
   await page.goto('/');
+  await assertMockAction(page);
   await page.getByLabel('Your name (required)').fill('Test');
   await page.getByLabel('Email address (required)').fill('test@example.invalid');
   await page.getByRole('button', { name: 'Request a quote' }).click();
