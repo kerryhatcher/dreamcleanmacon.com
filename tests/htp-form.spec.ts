@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const endpoint = 'https://pilot-test.supabase.co/functions/v1/form-submit?form=11111111-1111-4111-8111-111111111111';
+const endpoint = 'https://htp.example.invalid/public/forms/11111111-1111-4111-8111-111111111111';
 test.skip(!process.env.PUBLIC_HTP_FORM_ENDPOINT, 'Requires a build with the mock HTP endpoint');
 test('HTP ambiguous submission survives reload and replays once without changed values', async ({ page }) => {
   const payloads: any[] = [];

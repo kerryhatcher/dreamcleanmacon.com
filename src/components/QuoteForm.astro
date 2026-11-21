@@ -1,16 +1,11 @@
 ---
 import Arrow from './Arrow.astro';
 
-// Both values are public routing configuration, never credentials. A malformed
-// setting must fail the build instead of silently sending inquiries elsewhere.
+import { validateHtpEndpoint } from '../lib/htp-endpoint.mjs';
+
+// Public routing configuration, never credentials. Invalid settings fail the build.
 const htpEndpoint = import.meta.env.PUBLIC_HTP_FORM_ENDPOINT;
-if (htpEndpoint) {
-  let url: URL;
-  try { url = new URL(htpEndpoint); } catch { throw new Error('Invalid PUBLIC_HTP_FORM_ENDPOINT'); }
-  if (url.protocol !== 'https:' || !/^[a-z0-9-]+\.supabase\.co$/.test(url.hostname) || url.port || url.username || url.password || url.pathname !== '/functions/v1/form-submit' || url.hash || [...url.searchParams.keys()].join() !== 'form' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(url.searchParams.get('form') || '')) {
-    throw new Error('Invalid PUBLIC_HTP_FORM_ENDPOINT');
-  }
-}
+if (htpEndpoint) validateHtpEndpoint(htpEndpoint);
 const endpoint = htpEndpoint || 'https://formspree.io/f/xeaoybzw';
 ---
 <section id="quote" class="quote-section section-wrap" aria-labelledby="quote-title">
