@@ -43,6 +43,23 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Test quote and phone tracking
         run: npm test
+      - name: Build and verify configured production Forms artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && inputs.preview_branch == '' && vars.PUBLIC_HTP_FORM_ENDPOINT != ''
+        env:
+          ASTRO_SITE: https://www.dreamcleanmacon.com
+          ASTRO_BASE: /
+          PUBLIC_HTP_FORM_ENDPOINT: ${{ vars.PUBLIC_HTP_FORM_ENDPOINT }}
+        run: |
+          node --input-type=module -e '
+            import { validateHtpEndpoint } from "./src/lib/htp-endpoint.mjs";
+            const endpoint = process.env.PUBLIC_HTP_FORM_ENDPOINT;
+            validateHtpEndpoint(endpoint);
+            if (new URL(endpoint).origin !== "https://htp-api-kerry-hatcher.fly.dev") {
+              throw new Error("Production HTP Forms must use the Fly API origin");
+            }
+          '
+          npm run build
+          npx playwright test tests/htp-artifact.spec.ts
       - name: Prevent preview indexing
         if: github.event_name == 'pull_request' || inputs.preview_branch != ''
         run: node scripts/prepare-preview.mjs
