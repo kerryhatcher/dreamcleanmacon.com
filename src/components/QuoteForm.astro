@@ -102,12 +102,12 @@ const endpoint = htpEndpoint || 'https://formspree.io/f/xeaoybzw';
           signal: controller.signal,
         });
         const result = await response.json();
-        if (!response.ok || result?.ok !== true) {
+        if (!response.ok || result?.ok !== true || (htp && typeof result.duplicate !== 'boolean')) {
           status.dataset.state = 'error';
           if (htp && response.status === 409) {
             status.textContent = 'We couldn’t reconcile this request with an earlier submission. Please call (678) 232-8614 before trying again.';
           } else {
-            const definite = [413, 422, 429].includes(response.status);
+            const definite = [413, 422].includes(response.status);
             if (htp && definite && !hadSaved) persist(null);
             status.textContent = !htp || (definite && !hadSaved)
               ? 'Your request wasn’t accepted. Please check your details and try again, or call (678) 232-8614.'

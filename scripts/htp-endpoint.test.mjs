@@ -5,6 +5,7 @@ import { validateHtpEndpoint } from '../src/lib/htp-endpoint.mjs';
 const valid = 'https://htp.example.invalid/public/forms/11111111-1111-4111-8111-111111111111';
 test('accepts the public HTP API route', () => {
   assert.doesNotThrow(() => validateHtpEndpoint(valid));
+  assert.doesNotThrow(() => validateHtpEndpoint(valid.replace('htp.example.invalid', 'htp-api-kerry-hatcher.fly.dev')));
 });
 test('rejects direct receivers and malformed or non-exact routes', () => {
   for (const value of [

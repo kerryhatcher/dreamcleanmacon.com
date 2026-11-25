@@ -63,3 +63,46 @@ test('HTP validation allows corrected retry; conflict never silently resubmits',
   await expect(page.getByRole('status')).toContainText('restore the original details');
   expect(payloads).toHaveLength(2);
 });
+
+for (const outcome of ['rate limit', 'incomplete receipt'] as const) {
+  test(`HTP ${outcome} preserves original ID and values until a valid receipt`, async ({ page }) => {
+    const payloads: any[] = [];
+    await page.route('https://www.dreamcleanmacon.com/**', async route => {
+      if (route.request().method() !== 'GET') return route.abort();
+      const url = new URL(route.request().url());
+      await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4517${url.pathname}` }) });
+    });
+    await page.addInitScript(() => {
+      (window as any).events = [];
+      (window as any).zaraz = { track: (name: string) => (window as any).events.push(name) };
+    });
+    await page.route(endpoint, async route => {
+      if (route.request().method() === 'OPTIONS') return route.fulfill({ status: 204, headers: { 'access-control-allow-origin': '*', 'access-control-allow-methods': 'POST', 'access-control-allow-headers': 'content-type' } });
+      payloads.push(route.request().postDataJSON());
+      await route.fulfill({
+        status: payloads.length === 1 && outcome === 'rate limit' ? 429 : 200,
+        json: payloads.length === 1 ? (outcome === 'rate limit' ? { error: 'rate_limited' } : { ok: true }) : { ok: true, duplicate: true },
+        headers: { 'access-control-allow-origin': '*', 'retry-after': '600' },
+      });
+    });
+    await page.goto('https://www.dreamcleanmacon.com/');
+    await assertMockAction(page);
+    await page.getByLabel('Your name (required)').fill('Test');
+    await page.getByLabel('Email address (required)').fill('test@example.invalid');
+    await page.getByRole('button', { name: 'Request a quote' }).click();
+    await expect(page.getByRole('status')).toContainText('couldn’t confirm');
+    expect(await page.evaluate(() => (window as any).events)).toEqual([]);
+    await page.reload();
+    await expect(page.getByLabel('Your name (required)')).toHaveValue('Test');
+    await page.getByLabel('Your name (required)').fill('Changed');
+    await page.getByRole('button', { name: 'Request a quote' }).click();
+    await expect(page.getByRole('status')).toContainText('restore the original details');
+    expect(payloads).toHaveLength(1);
+    await page.getByLabel('Your name (required)').fill('Test');
+    await page.getByRole('button', { name: 'Request a quote' }).click();
+    await expect(page.getByRole('status')).toContainText('Your visit is not booked yet');
+    expect(payloads).toHaveLength(2);
+    expect(payloads[1]).toEqual(payloads[0]);
+    expect(await page.evaluate(() => (window as any).events)).toEqual(['generate_lead']);
+  });
+}
