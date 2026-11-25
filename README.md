@@ -65,7 +65,9 @@ References: [Cloudflare CI deployment guide](https://developers.cloudflare.com/p
 
 ## Quote form
 
-The quote form retains a standard HTML POST to `https://formspree.io/f/xeaoybzw` when JavaScript is unavailable. With JavaScript, it submits the same fields to Formspree with `Accept: application/json` and displays an accessible inline result. Only a successful HTTP response with `ok: true` confirms receipt. Name and email are required; phone and a cleaning-needs message are optional. Pending and accepted submissions cannot be submitted twice. Errors retain the entered details; an uncertain response advises checking by phone before retrying. A request is an inquiry, not a confirmed booking. The detailed questionnaire in `info/intake_form.jpg` remains reference material for a later intake process.
+The quote form defaults to Formspree until the HTP receiver is deployed, the exact production host is verified, and the coordinator provisions the public form. To prepare an HTP build, set `PUBLIC_HTP_FORM_ENDPOINT` to the exact provisioned `https://<HTP_API_HOST>/public/forms/<FORM_UUID>` before `npm run build`. The build rejects malformed endpoints. This value is public routing information, not a credential; verify the API host and form UUID independently before activation. The Fly API origin `https://htp-api-kerry-hatcher.fly.dev` passes source validation; this does not establish ingress qualification or provision a Dream Clean form. No private key belongs in the site. Remove the variable and rebuild to roll back to Formspree; preserve HTP responses during rollback.
+
+With HTP enabled, JavaScript sends JSON and retains the submission ID and original values in session storage for retry after an uncertain outcome, including reloads in the same tab. If storage is unavailable, retry state lasts only for the current page. An uncertain submission must be retried with unchanged details; call the business to reconcile before sending changes. Confirmed success requires an HTTP success response with `ok: true` and a boolean `duplicate`; it clears stored values and sends `generate_lead` once. HTTP 429 remains unconfirmed and preserves the original submission ID and values, including across reloads. A standard HTML POST remains available without JavaScript, but it cannot deduplicate an uncertain retry and displays the receiver's JSON response. The confirmation states that a visit is not booked. Name and email are required; phone and message are optional.
 
 ### Inquiry measurement
 
@@ -73,7 +75,7 @@ The quote form retains a standard HTML POST to `https://formspree.io/f/xeaoybzw`
 
 | Event | Trigger | Parameters |
 | --- | --- | --- |
-| `generate_lead` | Formspree confirms acceptance | `page_path`, `service_type`, `form_id=cleaning_quote`, `contact_method=quote_form` |
+| `generate_lead` | The configured receiver confirms acceptance | `page_path`, `service_type`, `form_id=cleaning_quote`, `contact_method=quote_form` |
 | `phone_click` | A telephone link is activated | `page_path`, `service_type`, `link_location` (`header`, `footer`, `quote`, or `content`) |
 
 No names, email addresses, customer phone numbers, messages, query strings, or free-form link text are included in these custom event payloads. Telephone links keep their native behavior. Analytics failure does not block either contact method. A phone click measures intent, not a connected call or qualified lead. JavaScript-disabled submissions still work but do not emit these browser events.
@@ -87,11 +89,11 @@ On October 27, 2026, the existing Zaraz GA4 tool (`TItR`, measurement ID `G-Q01T
 - GA4 property `557292489` registers `generate_lead` as a key event, once per event, without an invented default monetary value. `phone_click` is an ordinary event.
 - Event-scoped custom dimensions `Service type` (`service_type`) and `Phone link location` (`link_location`) expose the fixed service/control categories in GA4 reports.
 
-Zaraz runs in realtime configuration mode, so those settings apply separately from site deployment. Preserve them when editing Cloudflare. After production deployment, use GA4 Realtime/DebugView and actual Formspree submissions to check collection. Do not submit fake customer leads to production or treat a simulated browser test as proof of email delivery.
+Zaraz runs in realtime configuration mode, so those settings apply separately from site deployment. Preserve them when editing Cloudflare. After production deployment, use GA4 Realtime/DebugView and actual receiver submissions to check collection. Do not submit fake customer leads to production or treat a simulated browser test as proof of email delivery.
 
 ### Browser tests
 
-Run `npm run build`, `npx playwright install chromium`, then `npm test`. CI installs Chromium and runs the same suite before deploying. Tests proxy production-host URLs to the local build, stub Zaraz, and intercept every Formspree request; they send no real inquiries or analytics. They cover accepted/invalid/rejected/network-failed submissions, duplicate protection, retries, telephone intent, unavailable analytics, production-host restrictions, and native POST without JavaScript.
+Run `npm run build`, `npx playwright install chromium`, then `npm test`. CI installs Chromium and runs the same suite before deploying. Tests proxy production-host URLs to the local build, stub Zaraz, and intercept every form request; they send no real inquiries or analytics. They cover accepted/invalid/rejected/network-failed submissions, duplicate protection, retries, telephone intent, unavailable analytics, production-host restrictions, and native POST without JavaScript.
 
 The default test server is `http://127.0.0.1:4517` and must be unused. For an intentionally started and verified local preview only, `PLAYWRIGHT_REUSE_SERVER=1 npm test` permits reuse outside CI. `--ignore-lock` keeps Astro's test preview in the foreground.
 
@@ -114,3 +116,12 @@ The homepage follows the approved `mock-ups/0.png` reference. Its opening interi
 The work section uses supplied oven and stovetop before/after pairs and a refrigerator comparison. The About section uses the supplied team portrait. Original files remain in `info/`; selected originals are copied to `public/images/`, and Astro creates responsive WebP versions at build time. Image origins and generation prompts are recorded in `.impeccable/asset-sources.json` and `.impeccable/build/interior-prompt.json`, and embedded in the selected originals. The postbuild script preserves provenance in JSON sidecars beside the optimized WebP files. Reviews are transcribed excerpts from the supplied Facebook screenshots and customer-review graphic; source records live in `.impeccable/content-sources.md`.
 
 Product context is in `PRODUCT.md`. The confirmed homepage brief and selected direction are in `.impeccable/surfaces/src-pages-index-astro.md`.
+
+To test the HTP integration without contacting a real receiver, build and run its isolated browser test with the same mock configuration:
+
+```sh
+PUBLIC_HTP_FORM_ENDPOINT='https://htp.example.invalid/public/forms/11111111-1111-4111-8111-111111111111' npm run build
+PUBLIC_HTP_FORM_ENDPOINT='https://htp.example.invalid/public/forms/11111111-1111-4111-8111-111111111111' npx playwright test tests/htp-form.spec.ts tests/htp-safety.spec.ts
+```
+
+The mock does not demonstrate a live durable inbox or domain verification. Receiver deployment, verified exact www origin, independently provisioned API host and form with the required saved fields, independent reviews, and an authorized visitor-to-inbox check remain release gates.
